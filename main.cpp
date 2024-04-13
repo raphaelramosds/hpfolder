@@ -86,7 +86,8 @@ int main(int argc, char* argv[]) {
     }
 
     //random seed
-    srand(time(NULL));
+    srand(0);
+    // srand(time(NULL));
 
     //Protein p("WBWwB");
     //Protein p("WBWWBWWBBWWB");
@@ -243,8 +244,8 @@ void calculation( Population *pop) {
 
             //if graphics is disabled: output ascii status and picture to console
             if( !switch_enable_graphics ) {
-                cout << globalFittestPtr->getStatusString() << endl;
-                globalFittestPtr->printAsciiPicture();
+                // cout << globalFittestPtr->getStatusString() << endl;
+                // globalFittestPtr->printAsciiPicture();
             }
         }
     }
