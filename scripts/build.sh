@@ -16,7 +16,7 @@ e=1000
 m=-23   
 
 # Population size
-s=100   
+s=128
 
 # Bootstrap
 PARENT=$(dirname "$(pwd)")
@@ -25,7 +25,8 @@ LOG=$PARENT/scripts/log
 # Outputs
 OUTPUT_GPROF=$LOG/gprof.txt
 OUTPUT_VECT=$LOG/vect.txt
-OUTPUT_GRAPH=$LOG/graph.png
+OUTPUT_GRAPH_POP=$LOG/graph_pop.png
+OUTPUT_GRAPH_CALC=$LOG/graph_calc.png
 
 touch $OUTPUT_VECT $OUTPUT_GPROF
 cd $PARENT
@@ -35,7 +36,7 @@ FLAGS="-lGL -lGLU -lglut -lboost_system -lboost_thread -pg -O3 -fopt-info-vec-mi
 
 # Compile code
 echo "Compiling with vectorization"
-g++ *.cpp *.hpp -o hpfolder $FLAGS 2>&1 | tee > $(grep "couldn't vectorize loop" > $OUTPUT_VECT)
+g++ *.cpp *.hpp -o hpfolder $FLAGS 2>&1 | tee > $(grep "couldn't vectorize loop" | grep -v '^/usr' > $OUTPUT_VECT)
 
 # Execute code
 echo "Executing code"
@@ -43,6 +44,8 @@ echo "Executing code"
 
 # Analysis with gprof
 echo "Analysis with gprof"
-gprof --ignore-non-functions ./hpfolder | tee $OUTPUT_GPROF| gprof2dot -s -w | dot -Tpng -o $OUTPUT_GRAPH
+gprof --ignore-non-functions ./hpfolder > $OUTPUT_GPROF
+gprof2dot -s -w -n0 -e0 -z "calculation(Population*)" $OUTPUT_GPROF | dot -Tpng -o $OUTPUT_GRAPH_CALC
+gprof2dot -s -w -n0 -e0 -z "Population::Population(int, Protein, float, float)" $OUTPUT_GPROF | dot -Tpng -o $OUTPUT_GRAPH_POP
 
 echo "Done"
