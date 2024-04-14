@@ -16,7 +16,7 @@ e=1000
 m=-23   
 
 # Population size
-s=100   
+s=$1
 
 # Bootstrap
 PARENT=$(dirname "$(pwd)")
@@ -34,8 +34,8 @@ cd $PARENT
 FLAGS="-lGL -lGLU -lglut -lboost_system -lboost_thread -pg -O3 -fopt-info-vec-missed" 
 
 # Compile code
-echo "Compiling with vectorization"
-g++ *.cpp *.hpp -o hpfolder $FLAGS 2>&1 | tee > $(grep "couldn't vectorize loop" > $OUTPUT_VECT)
+echo "Compiling with vectorization (Population = $s)"
+g++ *.cpp *.hpp -o hpfolder $FLAGS 2>&1 | tee > $( grep "couldn't vectorize loop" > $OUTPUT_VECT )
 
 # Execute code
 echo "Executing code"
@@ -43,6 +43,6 @@ echo "Executing code"
 
 # Analysis with gprof
 echo "Analysis with gprof"
-gprof --ignore-non-functions ./hpfolder | tee $OUTPUT_GPROF| gprof2dot -s -w | dot -Tpng -o $OUTPUT_GRAPH
+gprof --ignore-non-functions ./hpfolder | tee $OUTPUT_GPROF | gprof2dot -s -w | dot -Tpng -o $OUTPUT_GRAPH
 
 echo "Done"
