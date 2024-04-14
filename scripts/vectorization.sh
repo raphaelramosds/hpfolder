@@ -3,9 +3,8 @@ PARENT=$(dirname "$(pwd)")
 
 # Output
 OUTPUT_VECT=$PARENT/scripts/log/vect.txt
-OUTPUT_GPROF=$PARENT/scripts/log/gprof.txt
 
-touch $OUTPUT_VECT $OUTPUT_GPROF
+touch $OUTPUT_VECT
 cd $PARENT
 
 # Parameters
@@ -24,8 +23,5 @@ g++ *.cpp *.hpp -o hpfolder $FLAGS 2>&1 | tee > $(grep "couldn't vectorize loop"
 
 # Execute code
 ./hpfolder -e $e -y $m -p $P -s $s -m $m -c $c 
-
-# Analysis with gprof
-gprof ./hpfolder > $OUTPUT_GPROF
 
 echo "Done"
