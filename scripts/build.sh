@@ -32,11 +32,11 @@ touch $OUTPUT_VECT $OUTPUT_GPROF
 cd $PARENT
 
 # Needed flags
-FLAGS="-lGL -lGLU -lglut -lboost_system -lboost_thread -pg -O3 -fopt-info-vec-missed" 
+FLAGS="-lGL -lGLU -lglut -lboost_system -lboost_thread -pg -O3 -fopt-info-vec-all" 
 
 # Compile code
 echo "Compiling with vectorization"
-g++ *.cpp *.hpp -o hpfolder $FLAGS 2>&1 | tee > $(grep "couldn't vectorize loop" | grep -v '^/usr' > $OUTPUT_VECT)
+g++ *.cpp *.hpp -o hpfolder $FLAGS 2>&1 | tee > $(grep -v '^/usr' > $OUTPUT_VECT)
 
 # Execute code
 echo "Executing code"
