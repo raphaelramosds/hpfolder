@@ -2,37 +2,37 @@ Conformation.cpp:114:21: missed: couldn't vectorize loop # checar
 Conformation.cpp:132:22: missed: couldn't vectorize loop # checar
 Conformation.cpp:132:22: missed: couldn't vectorize loop # checar
 Conformation.cpp:132:22: missed: couldn't vectorize loop # checar
-Conformation.cpp:168:20: missed: couldn't vectorize loop
-Conformation.cpp:178:26: missed: couldn't vectorize loop
-Conformation.cpp:208:12: missed: couldn't vectorize loop
-Conformation.cpp:258:20: missed: couldn't vectorize loop
-Conformation.cpp:285:20: missed: couldn't vectorize loop
-Conformation.cpp:246:17: missed: couldn't vectorize loop
-Conformation.cpp:70:23: missed: couldn't vectorize loop
-Conformation.cpp:66:19: missed: couldn't vectorize loop
-Conformation.cpp:234:12: missed: couldn't vectorize loop
-Conformation.cpp:258:20: missed: couldn't vectorize loop
-Conformation.cpp:225:19: missed: couldn't vectorize loop
-Conformation.cpp:447:21: missed: couldn't vectorize loop
-Conformation.cpp:434:18: missed: couldn't vectorize loop
-Conformation.cpp:435:18: missed: couldn't vectorize loop
-Conformation.cpp:408:36: missed: couldn't vectorize loop
-Conformation.cpp:398:19: missed: couldn't vectorize loop
-Conformation.cpp:394:10: missed: couldn't vectorize loop
-Conformation.cpp:369:19: missed: couldn't vectorize loop
-Population.cpp:86:20: missed: couldn't vectorize loop
-Population.cpp:105:60: missed: couldn't vectorize loop
-Population.cpp:130:47: missed: couldn't vectorize loop
-Population.cpp:120:20: missed: couldn't vectorize loop
-Population.cpp:87:25: missed: couldn't vectorize loop
-Population.cpp:16:1: missed: couldn't vectorize loop
-Population.cpp:32:19: missed: couldn't vectorize loop
-Population.cpp:25:49: missed: couldn't vectorize loop
-Population.cpp:66:2: missed: couldn't vectorize loop
-main.cpp:237:22: missed: couldn't vectorize loop # N/A
-main.cpp:239:40: missed: couldn't vectorize loop # N/A
-main.cpp:217:66: missed: couldn't vectorize loop # ogl
-main.cpp:194:66: missed: couldn't vectorize loop # ogl
-main.cpp:261:28: missed: couldn't vectorize loop # ogl
-main.cpp:261:28: missed: couldn't vectorize loop # ogl
-main.cpp:260:20: missed: couldn't vectorize loop # ogl
+Conformation.cpp:168:20: missed: couldn't vectorize loop # checar
+Conformation.cpp:178:26: missed: couldn't vectorize loop # checar
+Conformation.cpp:208:12: missed: couldn't vectorize loop # checar
+Conformation.cpp:258:20: missed: couldn't vectorize loop # ideia
+Conformation.cpp:285:20: missed: couldn't vectorize loop # checar
+Conformation.cpp:246:17: missed: couldn't vectorize loop # checar
+Conformation.cpp:70:23: missed: couldn't vectorize loop  # checar*
+Conformation.cpp:66:19: missed: couldn't vectorize loop  # checar!
+Conformation.cpp:234:12: missed: couldn't vectorize loop # checar!
+Conformation.cpp:258:20: missed: couldn't vectorize loop # derrota
+Conformation.cpp:225:19: missed: couldn't vectorize loop # checar!
+Conformation.cpp:447:21: missed: couldn't vectorize loop # checar*
+Conformation.cpp:434:18: missed: couldn't vectorize loop # ignorar (print)
+Conformation.cpp:435:18: missed: couldn't vectorize loop # ignorar (print)
+Conformation.cpp:408:36: missed: couldn't vectorize loop # ignorar (print)
+Conformation.cpp:398:19: missed: couldn't vectorize loop # ignorar (print)
+Conformation.cpp:394:10: missed: couldn't vectorize loop # ignorar (print)
+Conformation.cpp:369:19: missed: couldn't vectorize loop # ignorar (print)
+Population.cpp:86:20: missed: couldn't vectorize loop    # derrota*
+Population.cpp:105:60: missed: couldn't vectorize loop   # ignorar (print)
+Population.cpp:130:47: missed: couldn't vectorize loop   # derrota*
+Population.cpp:120:20: missed: couldn't vectorize loop   # checar!
+Population.cpp:87:25: missed: couldn't vectorize loop    # derrota*
+Population.cpp:16:1: missed: couldn't vectorize loop     # ?
+Population.cpp:32:19: missed: couldn't vectorize loop    # derrota*
+Population.cpp:25:49: missed: couldn't vectorize loop    # derrota*
+Population.cpp:66:2: missed: couldn't vectorize loop     # checar*
+main.cpp:237:22: missed: couldn't vectorize loop # derrota
+main.cpp:239:40: missed: couldn't vectorize loop # derrota
+main.cpp:217:66: missed: couldn't vectorize loop # ignorar (ogl)
+main.cpp:194:66: missed: couldn't vectorize loop # ignorar (ogl)
+main.cpp:261:28: missed: couldn't vectorize loop # ignorar (ogl)
+main.cpp:261:28: missed: couldn't vectorize loop # ignorar (ogl)
+main.cpp:260:20: missed: couldn't vectorize loop # ignorar (ogl)
