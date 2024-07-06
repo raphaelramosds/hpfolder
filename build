@@ -1,0 +1,28 @@
+#!/bin/sh
+
+# Protein
+P=WWBWWBBWWBBWWWWWBBBBBBBBBBWWWWWWBBWWBBWWBWWBBBBB
+
+# Mutation
+m=0.025 
+
+# Crossover
+c=0.90  
+
+# Energy evaluations
+e=1000  
+
+# Minimun energy
+m=-23   
+
+# Population size
+s=128
+
+# Make program
+make all
+
+# Executing code
+./hpfolder -e $e -y $m -p $P -s $s -m $m -c $c 
+
+# Destroy it
+make clean

@@ -19,6 +19,8 @@ m=-40
 PARENT=$(dirname "$(pwd)")
 LOG=$PARENT/scripts/log
 
+mkdir $LOG
+
 rm $LOG/*
 
 cd $PARENT
@@ -50,4 +52,4 @@ for i in 16 32 64 128 256 512 1024; do
     printf "\n"
 done
 
-echo "Got shit done"
+echo "Finished"
