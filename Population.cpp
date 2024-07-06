@@ -26,7 +26,7 @@ Population::Population(int size, Protein prot, float mutProb, float crossProb) {
 	Conformation temp;
 
 	//COMM
-	// cout << "Generate Population: " << endl;
+	cout << "Generate Population: " << endl;
 
 	int i = 0;
 	while (i < this->size) {
@@ -43,8 +43,8 @@ Population::Population(int size, Protein prot, float mutProb, float crossProb) {
 			this->setOfConformations.insert(temp.getConformationString());
 
 			//COMM
-			// cout << flush;
-			// cout << i << ".";
+			cout << flush;
+			cout << i << ".";
 			i++;
 		}
 	}
