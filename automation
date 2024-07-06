@@ -16,14 +16,12 @@ e=1000
 m=-40  
 
 # Bootstrap
-PARENT=$(dirname "$(pwd)")
-LOG=$PARENT/scripts/log
+PARENT=$(pwd)
+LOG=$PARENT/log
 
-mkdir $LOG
+mkdir log
 
 rm $LOG/*
-
-cd $PARENT
 
 # Needed flags
 FLAGS="-lGL -lGLU -lglut -lboost_system -lboost_thread -pg -O3" 
