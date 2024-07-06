@@ -251,25 +251,18 @@ void Conformation::calcValidity() {
 }
 
 void Conformation::mutate( float probability ) {
-	int n = this->length - 2;
-	float randF[n];
-	char randC[n];
-
-	for (int i = 0; i < n; i++) {
-		randF[i] = this->randomFloat();
-		randC[i] = ((int)(randF[i]*3/probability) % 3) - 1;
-	}
-
-	char* enc = this->encoding;
-	char mask;
+	float randF;
+	char randC;
 
 	// for each amino acid..
-	#pragma omp simd
-	for (int i = 0; i < n; i++) {
-		mask = (randF[i] <= probability) ? 0xFF : 0x00;
-
-        // Use the mask to conditionally update encoding
-        enc[i] = (randC[i] & mask) | (enc[i] & ~mask);
+	for (int i = 0; i < this->length - 2; i++) {
+		randF = this->randomFloat();
+		// ..check mutation probability
+		if (randF <= probability) {
+			// find random direction and mutate
+			randC = static_cast<char>(rand() % 3 - 1); //random numer -1, 0, 1;
+			this->encoding[i] = randC;
+		}
 	}
 }
 
