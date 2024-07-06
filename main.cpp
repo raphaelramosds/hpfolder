@@ -244,7 +244,7 @@ void calculation( Population *pop) {
 
             //if graphics is disabled: output ascii status and picture to console
             if( !switch_enable_graphics ) {
-                // cout << globalFittestPtr->getStatusString() << endl;
+                cout << globalFittestPtr->getStatusString() << endl;
                 // globalFittestPtr->printAsciiPicture();
             }
         }

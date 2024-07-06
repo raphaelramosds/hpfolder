@@ -1,3 +1,7 @@
-gmon.out
+scripts/log/
+
+*.out
+
 hpfolder
+
 .vscode
