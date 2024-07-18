@@ -18,7 +18,7 @@ using namespace std;
 #include <tclap/SwitchArg.h>
 #include <tclap/ValueArg.h>
 #include <tclap/ArgException.h>
-#include <GL/glut.h>
+//#include <GL/glut.h>
 #include <boost/thread.hpp>
 
 #include "Conformation.hpp"
@@ -104,7 +104,7 @@ int main(int argc, char* argv[]) {
     //create and start thread for calculation
     boost::thread calcThread(&calculation, &pop);
 
-
+/*
     if( switch_enable_graphics ) {
         //openGl part
         glutInit(&argc, argv);									//init glut
@@ -125,6 +125,7 @@ int main(int argc, char* argv[]) {
 
         glutMainLoop();
     }
+*/
     //if opengl is closed wait for calculation
     calcThread.join();
 
@@ -132,6 +133,7 @@ int main(int argc, char* argv[]) {
 }
 
 
+/*
 void drawAminoAcid(double x, double y, double size, char kind) {
     if( kind == 'B' ) {
         glColor3f(0,0,0);//Change the color to black
@@ -143,7 +145,7 @@ void drawAminoAcid(double x, double y, double size, char kind) {
         glVertex2f(x-(size/2),y-(size/2));//first coordinate
         glVertex2f(x-(size/2),y+(size/2));//second coordinate
         glVertex2f(x+(size/2),y+(size/2));//third coordinate
-        glVertex2f(x+(size/2),y-(size/2));//last coordinate*/
+        glVertex2f(x+(size/2),y-(size/2));//last coordinate
     glEnd();//Stop drawing quads
 }
 
@@ -171,7 +173,7 @@ void render() {
     if(!isTerminated) {
         glColor3f(1,1,1); //white
     }
-    /*TODO FONT VIEW*/
+   
     renderBitmapString( (-xView + xScaleFactor) * (2.0 - scaleFactor),
                         (yView - yScaleFactor) * (2.0 - scaleFactor),
                         GLUT_BITMAP_HELVETICA_18, const_cast<char *>(tt.c_str()));
@@ -179,7 +181,7 @@ void render() {
     if(isTerminated) {
         tt = "TERMINATED";
         glColor3f(0,0,1);//blue
-        /*TODO FONT VIEW*/
+        
           renderBitmapString( (-xView + xScaleFactor) * (2.0 - scaleFactor),
                                 (yView - yScaleFactor*1.5) * (2.0 - scaleFactor),
                                 GLUT_BITMAP_HELVETICA_18, const_cast<char *>(tt.c_str()));
@@ -232,6 +234,7 @@ void render() {
 
     glutSwapBuffers();
 }
+*/
 
 void calculation( Population *pop) {
     globalFittestPtr = pop->getFittest();
@@ -253,7 +256,7 @@ void calculation( Population *pop) {
     isTerminated = true;
 }
 
-
+/*
 void renderBitmapString(float x, float y, void *font, char *str) {
     char *c;
     glRasterPos2f(x, y);
@@ -279,3 +282,4 @@ void usekeys(unsigned char key, int x, int y) {
         break;
     }
 }
+*/

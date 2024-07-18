@@ -2,7 +2,7 @@ CXX=g++
 
 CXXFLAGS=-O3
 
-LIBS=-lGL -lGLU -lglut -lboost_system -lboost_thread -pg -fopenmp
+LIBS=-lboost_system -lboost_thread -pg -fopenmp
 
 TARGET=hpfolder
 
@@ -20,7 +20,7 @@ Population.o: Protein.o Population.hpp
 	$(CXX) $(CXXFLAGS) -c Population.cpp
 
 main.o: Protein.o Conformation.o Population.o
-	$(CXX) $(CXXFLAGS) -c main.cpp -o main.o
+	$(CXX) -I$(HOME)/.local/include $(CXXFLAGS) -c main.cpp -o main.o
 
 hpfolder: $(OBJS)
 	g++ -o $(TARGET) $(OBJS) $(LIBS)
