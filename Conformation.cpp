@@ -107,12 +107,10 @@ const Conformation & Conformation::operator=(const Conformation &right) {
 		this->absPositions = new int[this->length];
 
 		//copy absolute positions
-		# pragma omp parallel for
 		for( int i = 0; i < this->length; i++) {
 			this->absPositions[i] = right.absPositions[i];
 		}
 		//copy encoding
-		# pragma omp parallel for
 		for( int i = 0; i < this->length - 2; i++) {
 			this->encoding[i] = right.encoding[i];
  		}
