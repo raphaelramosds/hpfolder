@@ -62,6 +62,7 @@ int main(int argc, char* argv[]) {
 
     //process command line arguments
     try {
+        /*
         TCLAP::CmdLine cmd("Folding Visualizer - HP 2d Model", ' ', "0.5");
         TCLAP::SwitchArg enableGraphics("g", "graphics", "Enables OpenGL Window", cmd, false);
         TCLAP::ValueArg<float> setCros("c", "crossprob", "Sets the crossover probability", false, 1.0, "float 0..1", cmd);
@@ -77,9 +78,14 @@ int main(int argc, char* argv[]) {
         switch_enable_graphics = enableGraphics.getValue();
         switch_crossover_prob = setCros.getValue();
         switch_mutation_prob = setMut.getValue();
-        switch_popsize = setPopsize.getValue();
+        */
+        
+        switch_popsize = strtol(argv[1], NULL, 10);
+        
+        /*
         switch_protein = setProtein.getValue();
         switch_max_evaluations = setMaxeval.getValue();
+        */
 
     } catch (TCLAP::ArgException &e) { // catch any exceptions
         cerr << "error: " << e.error() << " for arg " << e.argId() << endl;

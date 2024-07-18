@@ -2,7 +2,7 @@ CXX=g++
 
 CXXFLAGS=-O3
 
-LIBS=-lboost_system -lboost_thread -pg -fopenmp
+LIBS=-lboost_system -lboost_thread -pg -fopenmp -lm -lmpascalops
 
 TARGET=hpfolder
 
