@@ -86,8 +86,7 @@ int main(int argc, char* argv[]) {
     }
 
     //random seed
-    srand(0);
-    // srand(time(NULL));
+    srand(time(NULL));
 
     //Protein p("WBWwB");
     //Protein p("WBWWBWWBBWWB");

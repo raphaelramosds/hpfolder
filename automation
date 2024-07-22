@@ -23,11 +23,7 @@ mkdir log
 
 rm $LOG/*
 
-# Needed flags
-FLAGS="-lGL -lGLU -lglut -lboost_system -lboost_thread -pg -O3" 
-
-# Compiling with vectorization
-g++ *.cpp *.hpp -o hpfolder $FLAGS
+make all
 
 for i in 16 32 64 128 256 512 1024; do
     # Compile code

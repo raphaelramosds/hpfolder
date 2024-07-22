@@ -26,7 +26,7 @@ Population::Population(int size, Protein prot, float mutProb, float crossProb) {
 	Conformation temp;
 
 	//COMM
-	// cout << "Generate Population: " << endl;
+	cout << "Generate Population: " << endl;
 
 	for (int i = 0; i < this->size; i++) {
 		//create temp conformation
