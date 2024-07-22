@@ -1,8 +1,8 @@
 CXX=g++
 
-CXXFLAGS=-O3
+CXXFLAGS=-O3 -pg
 
-LIBS=-lGL -lGLU -lglut -lboost_system -lboost_thread -pg
+LIBS=-lGL -lGLU -lglut -lboost_system -lboost_thread
 
 TARGET=hpfolder
 
@@ -10,20 +10,20 @@ OBJS=Protein.o Conformation.o Population.o main.o
 
 all: $(TARGET)
 
-Protein.o: Protein.hpp
+Protein.o: Protein.hpp Protein.cpp
 	$(CXX) $(CXXFLAGS) -c Protein.cpp
 
-Conformation.o: Protein.o Conformation.hpp
+Conformation.o: Protein.o Conformation.hpp Conformation.cpp
 	$(CXX) $(CXXFLAGS) -c Conformation.cpp
 
-Population.o: Protein.o Population.hpp
+Population.o: Protein.o Population.hpp Population.cpp
 	$(CXX) $(CXXFLAGS) -c Population.cpp
 
-main.o: Protein.o Conformation.o Population.o
+main.o: Protein.o Conformation.o Population.o main.cpp
 	$(CXX) $(CXXFLAGS) -c main.cpp -o main.o
 
 hpfolder: $(OBJS)
-	g++ -o $(TARGET) $(OBJS) $(LIBS)
+	g++ $(CXXFLAGS) -o $(TARGET) $(OBJS) $(LIBS)
 
 clean:
 	rm *.o $(TARGET) *.out
