@@ -2,11 +2,7 @@ CXX=g++
 
 CXXFLAGS=-O3 -pg
 
-<<<<<<< HEAD
-LIBS=-lboost_system -lboost_thread -pg -fopenmp
-=======
 LIBS=-lGL -lGLU -lglut -lboost_system -lboost_thread
->>>>>>> master
 
 TARGET=hpfolder
 
