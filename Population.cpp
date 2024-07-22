@@ -28,25 +28,22 @@ Population::Population(int size, Protein prot, float mutProb, float crossProb) {
 	//COMM
 	// cout << "Generate Population: " << endl;
 
-	int i = 0;
-	while (i < this->size) {
+	for (int i = 0; i < this->size; i++) {
 		//create temp conformation
-		temp = Conformation(&(this->protein), &(this->collisionSet));
-		temp.calcFitness();
+		do {
+			temp = Conformation(&(this->protein), &(this->collisionSet)); //!!! collisionSet deve ser private
+			temp.calcFitness();
+			//check if fitness is not 0 (and conformation is not already present in population)
+			/*&& this->setOfConformations.insert(temp.getConformationString()).second*/
+		} while (temp.getFitness() == 0);
 
-		//check if fitness is not 0 (and conformation is not already present in population)
-		/*&& this->setOfConformations.insert(temp.getConformationString()).second*/
-		if (temp.getFitness() != 0 ) {
+		//add to individuals
+		this->individuals[i] = temp;
+		this->setOfConformations.insert(temp.getConformationString());
 
-			//add to individuals
-			this->individuals[i] = temp;
-			this->setOfConformations.insert(temp.getConformationString());
-
-			//COMM
-			// cout << flush;
-			// cout << i << ".";
-			i++;
-		}
+		//COMM
+		// cout << flush;
+		// cout << i << ".";
 	}
 
 	this->theFittest = &(this->individuals[0]);

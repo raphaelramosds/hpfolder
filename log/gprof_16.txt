@@ -1,0 +1,576 @@
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls  Ts/call  Ts/call  name    
+100.00      0.01     0.01                             _init
+  0.00      0.01     0.00  1346000     0.00     0.00  Protein::getNth(int) const
+  0.00      0.01     0.00    78208     0.00     0.00  Conformation::~Conformation()
+  0.00      0.01     0.00    40042     0.00     0.00  Conformation::getFitness() const
+  0.00      0.01     0.00    19938     0.00     0.00  Conformation::calcValidity()
+  0.00      0.01     0.00    19938     0.00     0.00  Conformation::calcAbsolutePositions()
+  0.00      0.01     0.00     2792     0.00     0.00  Conformation::randomFloat()
+  0.00      0.01     0.00     1475     0.00     0.00  Population::getFittest() const
+  0.00      0.01     0.00     1396     0.00     0.00  Population::rouletteWheelSelect()
+  0.00      0.01     0.00     1303     0.00     0.00  Conformation::operator=(Conformation const&)
+  0.00      0.01     0.00     1219     0.00     0.00  Conformation::~Conformation()
+  0.00      0.01     0.00     1200     0.00     0.00  Protein::getLength() const
+  0.00      0.01     0.00     1184     0.00     0.00  Conformation::mutate(float)
+  0.00      0.01     0.00     1184     0.00     0.00  Conformation::Conformation(Conformation const&, Conformation const&, std::set<int, std::less<int>, std::allocator<int> >*)
+  0.00      0.01     0.00     1184     0.00     0.00  Conformation::isValid() const
+  0.00      0.01     0.00     1000     0.00     0.00  Conformation::calcFitness()
+  0.00      0.01     0.00     1000     0.00     0.00  Conformation::getConformationString[abi:cxx11]() const
+  0.00      0.01     0.00     1000     0.00     0.00  std::pair<std::_Rb_tree_iterator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, bool> std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::_Identity<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::_M_insert_unique<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&)
+  0.00      0.01     0.00      734     0.00     0.00  Population::crossover()
+  0.00      0.01     0.00      280     0.00     0.00  calculation(Population*)
+  0.00      0.01     0.00       36     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
+  0.00      0.01     0.00       21     0.00     0.00  TCLAP::Arg::argMatches(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) const
+  0.00      0.01     0.00       21     0.00     0.00  TCLAP::Arg::trimFlag(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&) const
+  0.00      0.01     0.00       20     0.00     0.00  TCLAP::Arg::addToList(std::__cxx11::list<TCLAP::Arg*, std::allocator<TCLAP::Arg*> >&) const
+  0.00      0.01     0.00       19     0.00     0.00  Conformation::Conformation()
+  0.00      0.01     0.00       16     0.00     0.00  Conformation::generateRandomConformation(bool)
+  0.00      0.01     0.00       16     0.00     0.00  Conformation::Conformation(Protein*, std::set<int, std::less<int>, std::allocator<int> >*)
+  0.00      0.01     0.00       15     0.00     0.00  std::__cxx11::basic_stringbuf<char, std::char_traits<char>, std::allocator<char> >::~basic_stringbuf()
+  0.00      0.01     0.00       10     0.00     0.00  TCLAP::Arg::Arg(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, bool, bool, TCLAP::Visitor*)
+  0.00      0.01     0.00       10     0.00     0.00  TCLAP::CmdLine::add(TCLAP::Arg*)
+  0.00      0.01     0.00        9     0.00     0.00  TCLAP::ValueArg<unsigned int>::processArg(int*, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >&)
+  0.00      0.01     0.00        5     0.00     0.00  TCLAP::ValueArg<int>::processArg(int*, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >&)
+  0.00      0.01     0.00        5     0.00     0.00  Conformation::getStatusString[abi:cxx11]() const
+  0.00      0.01     0.00        5     0.00     0.00  void std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::_M_realloc_insert<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(__gnu_cxx::__normal_iterator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >*, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&)
+  0.00      0.01     0.00        4     0.00     0.00  TCLAP::ValueArg<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::processArg(int*, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >&)
+  0.00      0.01     0.00        3     0.00     0.00  TCLAP::ValueArg<float>::processArg(int*, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >&)
+  0.00      0.01     0.00        3     0.00     0.00  TCLAP::SwitchArg::~SwitchArg()
+  0.00      0.01     0.00        3     0.00     0.00  boost::detail::sp_counted_base::release()
+  0.00      0.01     0.00        3     0.00     0.00  Protein::~Protein()
+  0.00      0.01     0.00        2     0.00     0.00  TCLAP::ValueArg<float>::_extractValue(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
+  0.00      0.01     0.00        2     0.00     0.00  TCLAP::ValueArg<float>::ValueArg(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, bool, float, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, TCLAP::CmdLineInterface&, TCLAP::Visitor*)
+  0.00      0.01     0.00        2     0.00     0.00  TCLAP::ValueArg<float>::~ValueArg()
+  0.00      0.01     0.00        2     0.00     0.00  TCLAP::ValueArg<unsigned int>::_extractValue(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
+  0.00      0.01     0.00        2     0.00     0.00  TCLAP::ValueArg<unsigned int>::ValueArg(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, bool, unsigned int, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, TCLAP::CmdLineInterface&, TCLAP::Visitor*)
+  0.00      0.01     0.00        2     0.00     0.00  TCLAP::ValueArg<unsigned int>::~ValueArg()
+  0.00      0.01     0.00        2     0.00     0.00  boost::exception_detail::copy_boost_exception(boost::exception*, boost::exception const*)
+  0.00      0.01     0.00        1     0.00     0.00  Population::Population(int, Protein, float, float)
+  0.00      0.01     0.00        1     0.00     0.00  Population::~Population()
+  0.00      0.01     0.00        1     0.00     0.00  TCLAP::HelpVisitor::~HelpVisitor()
+  0.00      0.01     0.00        1     0.00     0.00  TCLAP::VersionVisitor::~VersionVisitor()
+  0.00      0.01     0.00        1     0.00     0.00  TCLAP::IgnoreRestVisitor::~IgnoreRestVisitor()
+  0.00      0.01     0.00        1     0.00     0.00  TCLAP::Arg::~Arg()
+  0.00      0.01     0.00        1     0.00     0.00  TCLAP::CmdLine::_constructor()
+  0.00      0.01     0.00        1     0.00     0.00  TCLAP::CmdLine::parse(std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >&)
+  0.00      0.01     0.00        1     0.00     0.00  TCLAP::CmdLine::parse(int, char const* const*)
+  0.00      0.01     0.00        1     0.00     0.00  TCLAP::CmdLine::~CmdLine()
+  0.00      0.01     0.00        1     0.00     0.00  TCLAP::ValueArg<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::_extractValue(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
+  0.00      0.01     0.00        1     0.00     0.00  TCLAP::ValueArg<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::~ValueArg()
+  0.00      0.01     0.00        1     0.00     0.00  TCLAP::ValueArg<int>::_extractValue(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
+  0.00      0.01     0.00        1     0.00     0.00  TCLAP::ValueArg<int>::~ValueArg()
+  0.00      0.01     0.00        1     0.00     0.00  TCLAP::StdOutput::~StdOutput()
+  0.00      0.01     0.00        1     0.00     0.00  boost::exception_detail::bad_exception_::~bad_exception_()
+  0.00      0.01     0.00        1     0.00     0.00  boost::exception_ptr boost::exception_detail::get_static_exception_object<boost::exception_detail::bad_alloc_>()
+  0.00      0.01     0.00        1     0.00     0.00  boost::exception_ptr boost::exception_detail::get_static_exception_object<boost::exception_detail::bad_exception_>()
+  0.00      0.01     0.00        1     0.00     0.00  boost::detail::sp_counted_impl_p<boost::exception_detail::clone_impl<boost::exception_detail::bad_alloc_> >::dispose()
+  0.00      0.01     0.00        1     0.00     0.00  boost::detail::sp_counted_impl_p<boost::exception_detail::clone_impl<boost::exception_detail::bad_exception_> >::dispose()
+  0.00      0.01     0.00        1     0.00     0.00  boost::thread::join()
+  0.00      0.01     0.00        1     0.00     0.00  boost::thread::thread<void (*)(Population*), Population*>(void (*)(Population*), Population*, boost::disable_if<boost::thread_detail::is_convertible<void (*&)(Population*), boost::thread_attributes>, boost::thread::dummy*>::type)
+  0.00      0.01     0.00        1     0.00     0.00  boost::thread::~thread()
+  0.00      0.01     0.00        1     0.00     0.00  Protein::Protein(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)
+  0.00      0.01     0.00        1     0.00     0.00  Protein::Protein()
+
+ %         the percentage of the total running time of the
+time       program used by this function.
+
+cumulative a running sum of the number of seconds accounted
+ seconds   for by this function and those listed above it.
+
+ self      the number of seconds accounted for by this
+seconds    function alone.  This is the major sort for this
+           listing.
+
+calls      the number of times this function was invoked, if
+           this function is profiled, else blank.
+
+ self      the average number of milliseconds spent in this
+ms/call    function per call, if this function is profiled,
+	   else blank.
+
+ total     the average number of milliseconds spent in this
+ms/call    function and its descendents per call, if this
+	   function is profiled, else blank.
+
+name       the name of the function.  This is the minor sort
+           for this listing. The index shows the location of
+	   the function in the gprof listing. If the index is
+	   in parenthesis it shows where it would appear in
+	   the gprof listing if it were to be printed.
+
+Copyright (C) 2012-2022 Free Software Foundation, Inc.
+
+Copying and distribution of this file, with or without modification,
+are permitted in any medium without royalty provided the copyright
+notice and this notice are preserved.
+
+		     Call graph (explanation follows)
+
+
+granularity: each sample hit covers 4 byte(s) for 100.00% of 0.01 seconds
+
+index % time    self  children    called     name
+                                                 <spontaneous>
+[1]    100.0    0.01    0.00                 _init [1]
+-----------------------------------------------
+                0.00    0.00 1346000/1346000     Conformation::calcFitness() [23]
+[9]      0.0    0.00    0.00 1346000         Protein::getNth(int) const [9]
+-----------------------------------------------
+                0.00    0.00    8056/78208       Conformation::operator=(Conformation const&) [17]
+                0.00    0.00   70152/78208       Conformation::calcValidity() [12]
+[10]     0.0    0.00    0.00   78208         Conformation::~Conformation() [10]
+-----------------------------------------------
+                0.00    0.00      48/40042       Population::Population(int, Protein, float, float) [54]
+                0.00    0.00    2203/40042       calculation(Population*) [27]
+                0.00    0.00    3198/40042       Population::crossover() [26]
+                0.00    0.00   34593/40042       Population::rouletteWheelSelect() [16]
+[11]     0.0    0.00    0.00   40042         Conformation::getFitness() const [11]
+-----------------------------------------------
+                0.00    0.00    2368/19938       Population::crossover() [26]
+                0.00    0.00   17570/19938       Conformation::generateRandomConformation(bool) [33]
+[12]     0.0    0.00    0.00   19938         Conformation::calcValidity() [12]
+                0.00    0.00   70152/78208       Conformation::~Conformation() [10]
+                0.00    0.00   19938/19938       Conformation::calcAbsolutePositions() [13]
+-----------------------------------------------
+                0.00    0.00   19938/19938       Conformation::calcValidity() [12]
+[13]     0.0    0.00    0.00   19938         Conformation::calcAbsolutePositions() [13]
+-----------------------------------------------
+                0.00    0.00    1396/2792        Population::rouletteWheelSelect() [16]
+                0.00    0.00    1396/2792        Population::crossover() [26]
+[14]     0.0    0.00    0.00    2792         Conformation::randomFloat() [14]
+-----------------------------------------------
+                0.00    0.00    1475/1475        calculation(Population*) [27]
+[15]     0.0    0.00    0.00    1475         Population::getFittest() const [15]
+-----------------------------------------------
+                0.00    0.00    1396/1396        Population::crossover() [26]
+[16]     0.0    0.00    0.00    1396         Population::rouletteWheelSelect() [16]
+                0.00    0.00   34593/40042       Conformation::getFitness() const [11]
+                0.00    0.00    1396/2792        Conformation::randomFloat() [14]
+-----------------------------------------------
+                0.00    0.00      32/1303        Population::Population(int, Protein, float, float) [54]
+                0.00    0.00    1271/1303        Population::crossover() [26]
+[17]     0.0    0.00    0.00    1303         Conformation::operator=(Conformation const&) [17]
+                0.00    0.00    8056/78208       Conformation::~Conformation() [10]
+-----------------------------------------------
+                0.00    0.00       1/1219        main [7]
+                0.00    0.00      17/1219        Population::Population(int, Protein, float, float) [54]
+                0.00    0.00      17/1219        Population::~Population() [55]
+                0.00    0.00    1184/1219        Population::crossover() [26]
+[18]     0.0    0.00    0.00    1219         Conformation::~Conformation() [18]
+-----------------------------------------------
+                0.00    0.00      16/1200        Conformation::Conformation(Protein*, std::set<int, std::less<int>, std::allocator<int> >*) [34]
+                0.00    0.00    1184/1200        Conformation::Conformation(Conformation const&, Conformation const&, std::set<int, std::less<int>, std::allocator<int> >*) [21]
+[19]     0.0    0.00    0.00    1200         Protein::getLength() const [19]
+-----------------------------------------------
+                0.00    0.00    1184/1184        Population::crossover() [26]
+[20]     0.0    0.00    0.00    1184         Conformation::mutate(float) [20]
+-----------------------------------------------
+                0.00    0.00    1184/1184        Population::crossover() [26]
+[21]     0.0    0.00    0.00    1184         Conformation::Conformation(Conformation const&, Conformation const&, std::set<int, std::less<int>, std::allocator<int> >*) [21]
+                0.00    0.00    1184/1200        Protein::getLength() const [19]
+-----------------------------------------------
+                0.00    0.00    1184/1184        Population::crossover() [26]
+[22]     0.0    0.00    0.00    1184         Conformation::isValid() const [22]
+-----------------------------------------------
+                0.00    0.00      16/1000        Population::Population(int, Protein, float, float) [54]
+                0.00    0.00     984/1000        Population::crossover() [26]
+[23]     0.0    0.00    0.00    1000         Conformation::calcFitness() [23]
+                0.00    0.00 1346000/1346000     Protein::getNth(int) const [9]
+-----------------------------------------------
+                0.00    0.00      16/1000        Population::Population(int, Protein, float, float) [54]
+                0.00    0.00     984/1000        Population::crossover() [26]
+[24]     0.0    0.00    0.00    1000         Conformation::getConformationString[abi:cxx11]() const [24]
+-----------------------------------------------
+                0.00    0.00      16/1000        Population::Population(int, Protein, float, float) [54]
+                0.00    0.00     984/1000        Population::crossover() [26]
+[25]     0.0    0.00    0.00    1000         std::pair<std::_Rb_tree_iterator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, bool> std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::_Identity<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::_M_insert_unique<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) [25]
+-----------------------------------------------
+                0.00    0.00     734/734         calculation(Population*) [27]
+[26]     0.0    0.00    0.00     734         Population::crossover() [26]
+                0.00    0.00    3198/40042       Conformation::getFitness() const [11]
+                0.00    0.00    2368/19938       Conformation::calcValidity() [12]
+                0.00    0.00    1396/2792        Conformation::randomFloat() [14]
+                0.00    0.00    1396/1396        Population::rouletteWheelSelect() [16]
+                0.00    0.00    1271/1303        Conformation::operator=(Conformation const&) [17]
+                0.00    0.00    1184/1184        Conformation::Conformation(Conformation const&, Conformation const&, std::set<int, std::less<int>, std::allocator<int> >*) [21]
+                0.00    0.00    1184/1219        Conformation::~Conformation() [18]
+                0.00    0.00    1184/1184        Conformation::mutate(float) [20]
+                0.00    0.00    1184/1184        Conformation::isValid() const [22]
+                0.00    0.00     984/1000        Conformation::calcFitness() [23]
+                0.00    0.00     984/1000        Conformation::getConformationString[abi:cxx11]() const [24]
+                0.00    0.00     984/1000        std::pair<std::_Rb_tree_iterator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, bool> std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::_Identity<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::_M_insert_unique<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) [25]
+-----------------------------------------------
+                0.00    0.00       1/280         _GLOBAL__sub_I_globalFittestPtr [81]
+                0.00    0.00       1/280         TCLAP::ValueArg<int>::_extractValue(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [66]
+                0.00    0.00       2/280         TCLAP::ValueArg<float>::ValueArg(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, bool, float, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, TCLAP::CmdLineInterface&, TCLAP::Visitor*) [48]
+                0.00    0.00       2/280         TCLAP::ValueArg<unsigned int>::ValueArg(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, bool, unsigned int, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, TCLAP::CmdLineInterface&, TCLAP::Visitor*) [51]
+                0.00    0.00       2/280         TCLAP::ValueArg<float>::_extractValue(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [47]
+                0.00    0.00       2/280         TCLAP::ValueArg<unsigned int>::_extractValue(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [50]
+                0.00    0.00       6/280         TCLAP::ValueArg<float>::processArg(int*, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >&) [43]
+                0.00    0.00       8/280         TCLAP::ValueArg<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::processArg(int*, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >&) [42]
+                0.00    0.00       9/280         TCLAP::CmdLine::_constructor() [60]
+                0.00    0.00      10/280         TCLAP::ValueArg<int>::processArg(int*, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >&) [39]
+                0.00    0.00      18/280         TCLAP::ValueArg<unsigned int>::processArg(int*, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >&) [38]
+                0.00    0.00      36/280         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [28]
+                0.00    0.00      36/280         TCLAP::Arg::argMatches(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) const [29]
+                0.00    0.00      39/280         main [7]
+                0.00    0.00     108/280         TCLAP::Arg::Arg(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, bool, bool, TCLAP::Visitor*) [36]
+[27]     0.0    0.00    0.00     280         calculation(Population*) [27]
+                0.00    0.00    2203/40042       Conformation::getFitness() const [11]
+                0.00    0.00    1475/1475        Population::getFittest() const [15]
+                0.00    0.00     734/734         Population::crossover() [26]
+                0.00    0.00       5/5           Conformation::getStatusString[abi:cxx11]() const [40]
+-----------------------------------------------
+                0.00    0.00      36/36          TCLAP::Arg::argMatches(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) const [29]
+[28]     0.0    0.00    0.00      36         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [28]
+                0.00    0.00      36/280         calculation(Population*) [27]
+-----------------------------------------------
+                0.00    0.00       3/21          TCLAP::ValueArg<float>::processArg(int*, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >&) [43]
+                0.00    0.00       4/21          TCLAP::ValueArg<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::processArg(int*, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >&) [42]
+                0.00    0.00       5/21          TCLAP::ValueArg<int>::processArg(int*, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >&) [39]
+                0.00    0.00       9/21          TCLAP::ValueArg<unsigned int>::processArg(int*, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >&) [38]
+[29]     0.0    0.00    0.00      21         TCLAP::Arg::argMatches(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) const [29]
+                0.00    0.00      36/280         calculation(Population*) [27]
+                0.00    0.00      36/36          std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [28]
+-----------------------------------------------
+                0.00    0.00       3/21          TCLAP::ValueArg<float>::processArg(int*, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >&) [43]
+                0.00    0.00       4/21          TCLAP::ValueArg<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::processArg(int*, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >&) [42]
+                0.00    0.00       5/21          TCLAP::ValueArg<int>::processArg(int*, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >&) [39]
+                0.00    0.00       9/21          TCLAP::ValueArg<unsigned int>::processArg(int*, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >&) [38]
+[30]     0.0    0.00    0.00      21         TCLAP::Arg::trimFlag(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&) const [30]
+-----------------------------------------------
+                0.00    0.00      20/20          TCLAP::Arg::Arg(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, bool, bool, TCLAP::Visitor*) [36]
+[31]     0.0    0.00    0.00      20         TCLAP::Arg::addToList(std::__cxx11::list<TCLAP::Arg*, std::allocator<TCLAP::Arg*> >&) const [31]
+-----------------------------------------------
+                0.00    0.00      19/19          Population::Population(int, Protein, float, float) [54]
+[32]     0.0    0.00    0.00      19         Conformation::Conformation() [32]
+-----------------------------------------------
+                0.00    0.00      16/16          Population::Population(int, Protein, float, float) [54]
+[33]     0.0    0.00    0.00      16         Conformation::generateRandomConformation(bool) [33]
+                0.00    0.00   17570/19938       Conformation::calcValidity() [12]
+-----------------------------------------------
+                0.00    0.00      16/16          Population::Population(int, Protein, float, float) [54]
+[34]     0.0    0.00    0.00      16         Conformation::Conformation(Protein*, std::set<int, std::less<int>, std::allocator<int> >*) [34]
+                0.00    0.00      16/1200        Protein::getLength() const [19]
+-----------------------------------------------
+                0.00    0.00      15/15          Population::~Population() [55]
+[35]     0.0    0.00    0.00      15         std::__cxx11::basic_stringbuf<char, std::char_traits<char>, std::allocator<char> >::~basic_stringbuf() [35]
+-----------------------------------------------
+                0.00    0.00       2/10          TCLAP::ValueArg<float>::ValueArg(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, bool, float, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, TCLAP::CmdLineInterface&, TCLAP::Visitor*) [48]
+                0.00    0.00       2/10          TCLAP::ValueArg<unsigned int>::ValueArg(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, bool, unsigned int, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, TCLAP::CmdLineInterface&, TCLAP::Visitor*) [51]
+                0.00    0.00       3/10          main [7]
+                0.00    0.00       3/10          TCLAP::CmdLine::_constructor() [60]
+[36]     0.0    0.00    0.00      10         TCLAP::Arg::Arg(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, bool, bool, TCLAP::Visitor*) [36]
+                0.00    0.00     108/280         calculation(Population*) [27]
+                0.00    0.00      20/20          TCLAP::Arg::addToList(std::__cxx11::list<TCLAP::Arg*, std::allocator<TCLAP::Arg*> >&) const [31]
+-----------------------------------------------
+                0.00    0.00       2/10          TCLAP::ValueArg<float>::ValueArg(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, bool, float, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, TCLAP::CmdLineInterface&, TCLAP::Visitor*) [48]
+                0.00    0.00       2/10          TCLAP::ValueArg<unsigned int>::ValueArg(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, bool, unsigned int, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, TCLAP::CmdLineInterface&, TCLAP::Visitor*) [51]
+                0.00    0.00       3/10          main [7]
+                0.00    0.00       3/10          TCLAP::CmdLine::_constructor() [60]
+[37]     0.0    0.00    0.00      10         TCLAP::CmdLine::add(TCLAP::Arg*) [37]
+-----------------------------------------------
+                0.00    0.00       9/9           TCLAP::CmdLine::parse(std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >&) [61]
+[38]     0.0    0.00    0.00       9         TCLAP::ValueArg<unsigned int>::processArg(int*, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >&) [38]
+                0.00    0.00      18/280         calculation(Population*) [27]
+                0.00    0.00       9/21          TCLAP::Arg::trimFlag(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&) const [30]
+                0.00    0.00       9/21          TCLAP::Arg::argMatches(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) const [29]
+                0.00    0.00       2/2           TCLAP::ValueArg<unsigned int>::_extractValue(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [50]
+-----------------------------------------------
+                0.00    0.00       5/5           TCLAP::CmdLine::parse(std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >&) [61]
+[39]     0.0    0.00    0.00       5         TCLAP::ValueArg<int>::processArg(int*, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >&) [39]
+                0.00    0.00      10/280         calculation(Population*) [27]
+                0.00    0.00       5/21          TCLAP::Arg::trimFlag(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&) const [30]
+                0.00    0.00       5/21          TCLAP::Arg::argMatches(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) const [29]
+                0.00    0.00       1/1           TCLAP::ValueArg<int>::_extractValue(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [66]
+-----------------------------------------------
+                0.00    0.00       5/5           calculation(Population*) [27]
+[40]     0.0    0.00    0.00       5         Conformation::getStatusString[abi:cxx11]() const [40]
+-----------------------------------------------
+                0.00    0.00       5/5           TCLAP::CmdLine::parse(int, char const* const*) [62]
+[41]     0.0    0.00    0.00       5         void std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::_M_realloc_insert<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(__gnu_cxx::__normal_iterator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >*, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) [41]
+-----------------------------------------------
+                0.00    0.00       4/4           TCLAP::CmdLine::parse(std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >&) [61]
+[42]     0.0    0.00    0.00       4         TCLAP::ValueArg<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::processArg(int*, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >&) [42]
+                0.00    0.00       8/280         calculation(Population*) [27]
+                0.00    0.00       4/21          TCLAP::Arg::trimFlag(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&) const [30]
+                0.00    0.00       4/21          TCLAP::Arg::argMatches(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) const [29]
+                0.00    0.00       1/1           TCLAP::ValueArg<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::_extractValue(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [64]
+-----------------------------------------------
+                0.00    0.00       3/3           TCLAP::CmdLine::parse(std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >&) [61]
+[43]     0.0    0.00    0.00       3         TCLAP::ValueArg<float>::processArg(int*, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >&) [43]
+                0.00    0.00       6/280         calculation(Population*) [27]
+                0.00    0.00       3/21          TCLAP::Arg::trimFlag(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&) const [30]
+                0.00    0.00       3/21          TCLAP::Arg::argMatches(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) const [29]
+                0.00    0.00       2/2           TCLAP::ValueArg<float>::_extractValue(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [47]
+-----------------------------------------------
+                0.00    0.00       3/3           TCLAP::CmdLine::~CmdLine() [63]
+[44]     0.0    0.00    0.00       3         TCLAP::SwitchArg::~SwitchArg() [44]
+-----------------------------------------------
+                0.00    0.00       1/3           boost::exception_ptr boost::exception_detail::get_static_exception_object<boost::exception_detail::bad_alloc_>() [70]
+                0.00    0.00       1/3           boost::exception_ptr boost::exception_detail::get_static_exception_object<boost::exception_detail::bad_exception_>() [71]
+                0.00    0.00       1/3           boost::thread::thread<void (*)(Population*), Population*>(void (*)(Population*), Population*, boost::disable_if<boost::thread_detail::is_convertible<void (*&)(Population*), boost::thread_attributes>, boost::thread::dummy*>::type) [75]
+[45]     0.0    0.00    0.00       3         boost::detail::sp_counted_base::release() [45]
+-----------------------------------------------
+                0.00    0.00       1/3           Population::~Population() [55]
+                0.00    0.00       2/3           main [7]
+[46]     0.0    0.00    0.00       3         Protein::~Protein() [46]
+-----------------------------------------------
+                0.00    0.00       2/2           TCLAP::ValueArg<float>::processArg(int*, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >&) [43]
+[47]     0.0    0.00    0.00       2         TCLAP::ValueArg<float>::_extractValue(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [47]
+                0.00    0.00       2/280         calculation(Population*) [27]
+-----------------------------------------------
+                0.00    0.00       2/2           main [7]
+[48]     0.0    0.00    0.00       2         TCLAP::ValueArg<float>::ValueArg(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, bool, float, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, TCLAP::CmdLineInterface&, TCLAP::Visitor*) [48]
+                0.00    0.00       2/10          TCLAP::Arg::Arg(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, bool, bool, TCLAP::Visitor*) [36]
+                0.00    0.00       2/280         calculation(Population*) [27]
+                0.00    0.00       2/10          TCLAP::CmdLine::add(TCLAP::Arg*) [37]
+-----------------------------------------------
+                0.00    0.00       2/2           main [7]
+[49]     0.0    0.00    0.00       2         TCLAP::ValueArg<float>::~ValueArg() [49]
+-----------------------------------------------
+                0.00    0.00       2/2           TCLAP::ValueArg<unsigned int>::processArg(int*, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >&) [38]
+[50]     0.0    0.00    0.00       2         TCLAP::ValueArg<unsigned int>::_extractValue(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [50]
+                0.00    0.00       2/280         calculation(Population*) [27]
+-----------------------------------------------
+                0.00    0.00       2/2           main [7]
+[51]     0.0    0.00    0.00       2         TCLAP::ValueArg<unsigned int>::ValueArg(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, bool, unsigned int, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, TCLAP::CmdLineInterface&, TCLAP::Visitor*) [51]
+                0.00    0.00       2/10          TCLAP::Arg::Arg(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, bool, bool, TCLAP::Visitor*) [36]
+                0.00    0.00       2/280         calculation(Population*) [27]
+                0.00    0.00       2/10          TCLAP::CmdLine::add(TCLAP::Arg*) [37]
+-----------------------------------------------
+                0.00    0.00       2/2           main [7]
+[52]     0.0    0.00    0.00       2         TCLAP::ValueArg<unsigned int>::~ValueArg() [52]
+-----------------------------------------------
+                0.00    0.00       1/2           boost::exception_ptr boost::exception_detail::get_static_exception_object<boost::exception_detail::bad_alloc_>() [70]
+                0.00    0.00       1/2           boost::exception_ptr boost::exception_detail::get_static_exception_object<boost::exception_detail::bad_exception_>() [71]
+[53]     0.0    0.00    0.00       2         boost::exception_detail::copy_boost_exception(boost::exception*, boost::exception const*) [53]
+-----------------------------------------------
+                0.00    0.00       1/1           main [7]
+[54]     0.0    0.00    0.00       1         Population::Population(int, Protein, float, float) [54]
+                0.00    0.00      48/40042       Conformation::getFitness() const [11]
+                0.00    0.00      32/1303        Conformation::operator=(Conformation const&) [17]
+                0.00    0.00      19/19          Conformation::Conformation() [32]
+                0.00    0.00      17/1219        Conformation::~Conformation() [18]
+                0.00    0.00      16/16          Conformation::generateRandomConformation(bool) [33]
+                0.00    0.00      16/16          Conformation::Conformation(Protein*, std::set<int, std::less<int>, std::allocator<int> >*) [34]
+                0.00    0.00      16/1000        Conformation::calcFitness() [23]
+                0.00    0.00      16/1000        Conformation::getConformationString[abi:cxx11]() const [24]
+                0.00    0.00      16/1000        std::pair<std::_Rb_tree_iterator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, bool> std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::_Identity<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::_M_insert_unique<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) [25]
+                0.00    0.00       1/1           Protein::Protein() [78]
+-----------------------------------------------
+                0.00    0.00       1/1           main [7]
+[55]     0.0    0.00    0.00       1         Population::~Population() [55]
+                0.00    0.00      17/1219        Conformation::~Conformation() [18]
+                0.00    0.00      15/15          std::__cxx11::basic_stringbuf<char, std::char_traits<char>, std::allocator<char> >::~basic_stringbuf() [35]
+                0.00    0.00       1/3           Protein::~Protein() [46]
+-----------------------------------------------
+                0.00    0.00       1/1           TCLAP::CmdLine::~CmdLine() [63]
+[56]     0.0    0.00    0.00       1         TCLAP::HelpVisitor::~HelpVisitor() [56]
+-----------------------------------------------
+                0.00    0.00       1/1           TCLAP::CmdLine::~CmdLine() [63]
+[57]     0.0    0.00    0.00       1         TCLAP::VersionVisitor::~VersionVisitor() [57]
+-----------------------------------------------
+                0.00    0.00       1/1           TCLAP::CmdLine::~CmdLine() [63]
+[58]     0.0    0.00    0.00       1         TCLAP::IgnoreRestVisitor::~IgnoreRestVisitor() [58]
+-----------------------------------------------
+                0.00    0.00       1/1           main [7]
+[59]     0.0    0.00    0.00       1         TCLAP::Arg::~Arg() [59]
+-----------------------------------------------
+                0.00    0.00       1/1           main [7]
+[60]     0.0    0.00    0.00       1         TCLAP::CmdLine::_constructor() [60]
+                0.00    0.00       9/280         calculation(Population*) [27]
+                0.00    0.00       3/10          TCLAP::Arg::Arg(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, bool, bool, TCLAP::Visitor*) [36]
+                0.00    0.00       3/10          TCLAP::CmdLine::add(TCLAP::Arg*) [37]
+-----------------------------------------------
+                0.00    0.00       1/1           TCLAP::CmdLine::parse(int, char const* const*) [62]
+[61]     0.0    0.00    0.00       1         TCLAP::CmdLine::parse(std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >&) [61]
+                0.00    0.00       9/9           TCLAP::ValueArg<unsigned int>::processArg(int*, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >&) [38]
+                0.00    0.00       5/5           TCLAP::ValueArg<int>::processArg(int*, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >&) [39]
+                0.00    0.00       4/4           TCLAP::ValueArg<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::processArg(int*, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >&) [42]
+                0.00    0.00       3/3           TCLAP::ValueArg<float>::processArg(int*, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >&) [43]
+-----------------------------------------------
+                0.00    0.00       1/1           main [7]
+[62]     0.0    0.00    0.00       1         TCLAP::CmdLine::parse(int, char const* const*) [62]
+                0.00    0.00       5/5           void std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::_M_realloc_insert<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(__gnu_cxx::__normal_iterator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >*, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) [41]
+                0.00    0.00       1/1           TCLAP::CmdLine::parse(std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >&) [61]
+-----------------------------------------------
+                0.00    0.00       1/1           main [7]
+[63]     0.0    0.00    0.00       1         TCLAP::CmdLine::~CmdLine() [63]
+                0.00    0.00       3/3           TCLAP::SwitchArg::~SwitchArg() [44]
+                0.00    0.00       1/1           TCLAP::IgnoreRestVisitor::~IgnoreRestVisitor() [58]
+                0.00    0.00       1/1           TCLAP::VersionVisitor::~VersionVisitor() [57]
+                0.00    0.00       1/1           TCLAP::HelpVisitor::~HelpVisitor() [56]
+                0.00    0.00       1/1           TCLAP::StdOutput::~StdOutput() [68]
+-----------------------------------------------
+                0.00    0.00       1/1           TCLAP::ValueArg<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::processArg(int*, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >&) [42]
+[64]     0.0    0.00    0.00       1         TCLAP::ValueArg<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::_extractValue(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [64]
+-----------------------------------------------
+                0.00    0.00       1/1           main [7]
+[65]     0.0    0.00    0.00       1         TCLAP::ValueArg<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::~ValueArg() [65]
+-----------------------------------------------
+                0.00    0.00       1/1           TCLAP::ValueArg<int>::processArg(int*, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >&) [39]
+[66]     0.0    0.00    0.00       1         TCLAP::ValueArg<int>::_extractValue(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [66]
+                0.00    0.00       1/280         calculation(Population*) [27]
+-----------------------------------------------
+                0.00    0.00       1/1           main [7]
+[67]     0.0    0.00    0.00       1         TCLAP::ValueArg<int>::~ValueArg() [67]
+-----------------------------------------------
+                0.00    0.00       1/1           TCLAP::CmdLine::~CmdLine() [63]
+[68]     0.0    0.00    0.00       1         TCLAP::StdOutput::~StdOutput() [68]
+-----------------------------------------------
+                0.00    0.00       1/1           boost::exception_ptr boost::exception_detail::get_static_exception_object<boost::exception_detail::bad_exception_>() [71]
+[69]     0.0    0.00    0.00       1         boost::exception_detail::bad_exception_::~bad_exception_() [69]
+-----------------------------------------------
+                0.00    0.00       1/1           _GLOBAL__sub_I_globalFittestPtr [81]
+[70]     0.0    0.00    0.00       1         boost::exception_ptr boost::exception_detail::get_static_exception_object<boost::exception_detail::bad_alloc_>() [70]
+                0.00    0.00       1/2           boost::exception_detail::copy_boost_exception(boost::exception*, boost::exception const*) [53]
+                0.00    0.00       1/3           boost::detail::sp_counted_base::release() [45]
+-----------------------------------------------
+                0.00    0.00       1/1           _GLOBAL__sub_I_globalFittestPtr [81]
+[71]     0.0    0.00    0.00       1         boost::exception_ptr boost::exception_detail::get_static_exception_object<boost::exception_detail::bad_exception_>() [71]
+                0.00    0.00       1/2           boost::exception_detail::copy_boost_exception(boost::exception*, boost::exception const*) [53]
+                0.00    0.00       1/1           boost::exception_detail::bad_exception_::~bad_exception_() [69]
+                0.00    0.00       1/3           boost::detail::sp_counted_base::release() [45]
+-----------------------------------------------
+                0.00    0.00       1/1           boost::exception_ptr::~exception_ptr() [152]
+[72]     0.0    0.00    0.00       1         boost::detail::sp_counted_impl_p<boost::exception_detail::clone_impl<boost::exception_detail::bad_alloc_> >::dispose() [72]
+-----------------------------------------------
+                0.00    0.00       1/1           boost::exception_ptr::~exception_ptr() [152]
+[73]     0.0    0.00    0.00       1         boost::detail::sp_counted_impl_p<boost::exception_detail::clone_impl<boost::exception_detail::bad_exception_> >::dispose() [73]
+-----------------------------------------------
+                0.00    0.00       1/1           main [7]
+[74]     0.0    0.00    0.00       1         boost::thread::join() [74]
+-----------------------------------------------
+                0.00    0.00       1/1           main [7]
+[75]     0.0    0.00    0.00       1         boost::thread::thread<void (*)(Population*), Population*>(void (*)(Population*), Population*, boost::disable_if<boost::thread_detail::is_convertible<void (*&)(Population*), boost::thread_attributes>, boost::thread::dummy*>::type) [75]
+                0.00    0.00       1/3           boost::detail::sp_counted_base::release() [45]
+-----------------------------------------------
+                0.00    0.00       1/1           main [7]
+[76]     0.0    0.00    0.00       1         boost::thread::~thread() [76]
+-----------------------------------------------
+                0.00    0.00       1/1           main [7]
+[77]     0.0    0.00    0.00       1         Protein::Protein(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) [77]
+-----------------------------------------------
+                0.00    0.00       1/1           Population::Population(int, Protein, float, float) [54]
+[78]     0.0    0.00    0.00       1         Protein::Protein() [78]
+-----------------------------------------------
+
+ This table describes the call tree of the program, and was sorted by
+ the total amount of time spent in each function and its children.
+
+ Each entry in this table consists of several lines.  The line with the
+ index number at the left hand margin lists the current function.
+ The lines above it list the functions that called this function,
+ and the lines below it list the functions this one called.
+ This line lists:
+     index	A unique number given to each element of the table.
+		Index numbers are sorted numerically.
+		The index number is printed next to every function name so
+		it is easier to look up where the function is in the table.
+
+     % time	This is the percentage of the `total' time that was spent
+		in this function and its children.  Note that due to
+		different viewpoints, functions excluded by options, etc,
+		these numbers will NOT add up to 100%.
+
+     self	This is the total amount of time spent in this function.
+
+     children	This is the total amount of time propagated into this
+		function by its children.
+
+     called	This is the number of times the function was called.
+		If the function called itself recursively, the number
+		only includes non-recursive calls, and is followed by
+		a `+' and the number of recursive calls.
+
+     name	The name of the current function.  The index number is
+		printed after it.  If the function is a member of a
+		cycle, the cycle number is printed between the
+		function's name and the index number.
+
+
+ For the function's parents, the fields have the following meanings:
+
+     self	This is the amount of time that was propagated directly
+		from the function into this parent.
+
+     children	This is the amount of time that was propagated from
+		the function's children into this parent.
+
+     called	This is the number of times this parent called the
+		function `/' the total number of times the function
+		was called.  Recursive calls to the function are not
+		included in the number after the `/'.
+
+     name	This is the name of the parent.  The parent's index
+		number is printed after it.  If the parent is a
+		member of a cycle, the cycle number is printed between
+		the name and the index number.
+
+ If the parents of the function cannot be determined, the word
+ `<spontaneous>' is printed in the `name' field, and all the other
+ fields are blank.
+
+ For the function's children, the fields have the following meanings:
+
+     self	This is the amount of time that was propagated directly
+		from the child into the function.
+
+     children	This is the amount of time that was propagated from the
+		child's children to the function.
+
+     called	This is the number of times the function called
+		this child `/' the total number of times the child
+		was called.  Recursive calls by the child are not
+		listed in the number after the `/'.
+
+     name	This is the name of the child.  The child's index
+		number is printed after it.  If the child is a
+		member of a cycle, the cycle number is printed
+		between the name and the index number.
+
+ If there are any cycles (circles) in the call graph, there is an
+ entry for the cycle-as-a-whole.  This entry shows who called the
+ cycle (as parents) and the members of the cycle (as children.)
+ The `+' recursive calls entry shows the number of function calls that
+ were internal to the cycle, and the calls entry for each member shows,
+ for that member, how many times it was called from other members of
+ the cycle.
+
+Copyright (C) 2012-2022 Free Software Foundation, Inc.
+
+Copying and distribution of this file, with or without modification,
+are permitted in any medium without royalty provided the copyright
+notice and this notice are preserved.
+
+Index by function name
+
+  [27] calculation(Population*) [61] TCLAP::CmdLine::parse(std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >&) [72] boost::detail::sp_counted_impl_p<boost::exception_detail::clone_impl<boost::exception_detail::bad_alloc_> >::dispose()
+  [16] Population::rouletteWheelSelect() [62] TCLAP::CmdLine::parse(int, char const* const*) [73] boost::detail::sp_counted_impl_p<boost::exception_detail::clone_impl<boost::exception_detail::bad_exception_> >::dispose()
+  [26] Population::crossover() [63] TCLAP::CmdLine::~CmdLine() [74] boost::thread::join()
+  [54] Population::Population(int, Protein, float, float) [42] TCLAP::ValueArg<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::processArg(int*, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >&) [75] boost::thread::thread<void (*)(Population*), Population*>(void (*)(Population*), Population*, boost::disable_if<boost::thread_detail::is_convertible<void (*&)(Population*), boost::thread_attributes>, boost::thread::dummy*>::type)
+  [55] Population::~Population() [64] TCLAP::ValueArg<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::_extractValue(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [76] boost::thread::~thread()
+  [23] Conformation::calcFitness() [65] TCLAP::ValueArg<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::~ValueArg() [77] Protein::Protein(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)
+  [14] Conformation::randomFloat() [43] TCLAP::ValueArg<float>::processArg(int*, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >&) [78] Protein::Protein()
+  [12] Conformation::calcValidity() [47] TCLAP::ValueArg<float>::_extractValue(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [46] Protein::~Protein()
+  [13] Conformation::calcAbsolutePositions() [48] TCLAP::ValueArg<float>::ValueArg(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, bool, float, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, TCLAP::CmdLineInterface&, TCLAP::Visitor*) [15] Population::getFittest() const
+  [33] Conformation::generateRandomConformation(bool) [49] TCLAP::ValueArg<float>::~ValueArg() [11] Conformation::getFitness() const
+  [20] Conformation::mutate(float) [39] TCLAP::ValueArg<int>::processArg(int*, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >&) [40] Conformation::getStatusString[abi:cxx11]() const
+  [34] Conformation::Conformation(Protein*, std::set<int, std::less<int>, std::allocator<int> >*) [66] TCLAP::ValueArg<int>::_extractValue(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [24] Conformation::getConformationString[abi:cxx11]() const
+  [32] Conformation::Conformation() [67] TCLAP::ValueArg<int>::~ValueArg() [22] Conformation::isValid() const
+  [21] Conformation::Conformation(Conformation const&, Conformation const&, std::set<int, std::less<int>, std::allocator<int> >*) [38] TCLAP::ValueArg<unsigned int>::processArg(int*, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >&) [29] TCLAP::Arg::argMatches(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) const
+  [10] Conformation::~Conformation() [50] TCLAP::ValueArg<unsigned int>::_extractValue(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [30] TCLAP::Arg::trimFlag(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&) const
+  [18] Conformation::~Conformation() [51] TCLAP::ValueArg<unsigned int>::ValueArg(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, bool, unsigned int, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, TCLAP::CmdLineInterface&, TCLAP::Visitor*) [31] TCLAP::Arg::addToList(std::__cxx11::list<TCLAP::Arg*, std::allocator<TCLAP::Arg*> >&) const
+  [17] Conformation::operator=(Conformation const&) [52] TCLAP::ValueArg<unsigned int>::~ValueArg() [9] Protein::getNth(int) const
+  [56] TCLAP::HelpVisitor::~HelpVisitor() [68] TCLAP::StdOutput::~StdOutput() [19] Protein::getLength() const
+  [57] TCLAP::VersionVisitor::~VersionVisitor() [44] TCLAP::SwitchArg::~SwitchArg() [41] void std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::_M_realloc_insert<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(__gnu_cxx::__normal_iterator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >*, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&)
+  [58] TCLAP::IgnoreRestVisitor::~IgnoreRestVisitor() [69] boost::exception_detail::bad_exception_::~bad_exception_() [35] std::__cxx11::basic_stringbuf<char, std::char_traits<char>, std::allocator<char> >::~basic_stringbuf()
+  [36] TCLAP::Arg::Arg(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, bool, bool, TCLAP::Visitor*) [53] boost::exception_detail::copy_boost_exception(boost::exception*, boost::exception const*) [25] std::pair<std::_Rb_tree_iterator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, bool> std::_Rb_tree<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::_Identity<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::_M_insert_unique<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&)
+  [59] TCLAP::Arg::~Arg()     [70] boost::exception_ptr boost::exception_detail::get_static_exception_object<boost::exception_detail::bad_alloc_>() [28] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
+  [60] TCLAP::CmdLine::_constructor() [71] boost::exception_ptr boost::exception_detail::get_static_exception_object<boost::exception_detail::bad_exception_>() [1] _init
+  [37] TCLAP::CmdLine::add(TCLAP::Arg*) [45] boost::detail::sp_counted_base::release()
