@@ -12,6 +12,7 @@
 #include <iostream>
 #include <cstdio>
 #include <sstream>
+#include <omp.h>
 using namespace std;
 
 #include "Conformation.hpp"
@@ -21,6 +22,7 @@ using namespace std;
 //init static counter to zero
 //probably not needed
 unsigned int Conformation::energyEvalSteps = 0;
+thread_local unsigned int Conformation::seed = 0;
 
 
 //default constructor
@@ -56,7 +58,7 @@ Conformation::Conformation(const Conformation &p1, const Conformation &p2, set<i
 	this->generation = (p1.generation + p2.generation) / 2 + 1; //calc next generation
 
 	//create random number for encoding.. range [2..len-1]
-	int randI = (rand() % (this->protein->getLength() - 2));
+	int randI = (rand_r(&seed) % (this->protein->getLength() - 2));
 
 	this->encoding = new char[this->length - 2];
 	this->absPositions = new int[this->length];
@@ -223,7 +225,7 @@ void Conformation::generateRandomConformation( bool valid ) {
 
 	//init random conformation
 	for(int i = 0; i < this->length-2; i++) {
-		randInt = rand() % 3 - 1; //random numer -1, 0, 1
+		randInt = rand_r(&seed) % 3 - 1; //random numer -1, 0, 1
 		this->encoding[i] = static_cast<char>(randInt);
 	}
 
@@ -260,7 +262,7 @@ void Conformation::mutate( float probability ) {
 		// ..check mutation probability
 		if (randF <= probability) {
 			// find random direction and mutate
-			randC = static_cast<char>(rand() % 3 - 1); //random numer -1, 0, 1;
+			randC = static_cast<char>(rand_r(&seed) % 3 - 1); //random numer -1, 0, 1;
 			this->encoding[i] = randC;
 		}
 	}
@@ -468,12 +470,19 @@ short Conformation::extractY(int point) {
 //generates a random float value in [0,1]
 float Conformation::randomFloat() {
 	float scale=RAND_MAX+1.;
-	float base=rand()/scale;
-	float fine=rand()/scale;
+	float base=rand_r(&seed)/scale;
+	float fine=rand_r(&seed)/scale;
 
 	return base+fine/scale;
 }
 
 int Conformation::getAbsAt(int i) const {
 	return this->absPositions[i];
+}
+
+void Conformation::srand(unsigned int seed) {
+	#pragma omp parallel default(none) shared(seed)
+	{
+		Conformation::seed = seed + omp_get_thread_num();
+	}
 }

@@ -12,6 +12,7 @@
 #include <ctime>
 #include <cstdlib>
 #include <climits>
+#include <omp.h>
 using namespace std;
 
 #include <tclap/CmdLine.h>
@@ -56,9 +57,8 @@ unsigned int switch_popsize = 100;
 string switch_protein = "";
 int switch_minen = INT_MIN;
 
-
-
 int main(int argc, char* argv[]) {
+    omp_set_num_threads(4);
 
     //process command line arguments
     try {
@@ -86,7 +86,9 @@ int main(int argc, char* argv[]) {
     }
 
     //random seed
-    srand(time(NULL));
+    // srand(0);
+    // srand(time(NULL));
+    Conformation::srand(0);
 
     //Protein p("WBWwB");
     //Protein p("WBWWBWWBBWWB");
@@ -101,7 +103,8 @@ int main(int argc, char* argv[]) {
     Population pop( switch_popsize, p, switch_mutation_prob, switch_crossover_prob);
 
     //create and start thread for calculation
-    boost::thread calcThread(&calculation, &pop);
+    // boost::thread calcThread(&calculation, &pop);
+    calculation(&pop);
 
 /*
     if( switch_enable_graphics ) {
@@ -126,7 +129,7 @@ int main(int argc, char* argv[]) {
     }
 */
     //if opengl is closed wait for calculation
-    calcThread.join();
+    // calcThread.join();
 
     return 0;
 }

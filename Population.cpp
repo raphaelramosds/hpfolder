@@ -8,7 +8,8 @@
 #include <cstdlib>
 #include <iostream>
 #include <set>
-using namespace std;
+#include <algorithm>
+#include <omp.h>
 
 #include "Population.hpp"
 #include "Protein.hpp"
@@ -26,29 +27,65 @@ Population::Population(int size, Protein prot, float mutProb, float crossProb) {
 	Conformation temp;
 
 	//COMM
-	cout << "Generate Population: " << endl;
+	std::cout << "Generate Population: " << endl;
 
-	for (int i = 0; i < this->size; i++) {
-		//create temp conformation
-		do {
-			temp = Conformation(&(this->protein), &(this->collisionSet)); //!!! collisionSet deve ser private
-			temp.calcFitness();
-			//check if fitness is not 0 (and conformation is not already present in population)
-			/*&& this->setOfConformations.insert(temp.getConformationString()).second*/
-		} while (temp.getFitness() == 0);
+	double start, finish;
 
-		//add to individuals
-		this->individuals[i] = temp;
-		this->setOfConformations.insert(temp.getConformationString());
+	start = omp_get_wtime();
+	std::set<std::string>* local_sets = new std::set<std::string>[omp_get_max_threads()];
+	#pragma omp parallel default(none)  \
+		    private(temp, collisionSet) \
+		    shared (size, protein, individuals, setOfConformations, local_sets, std::cout)
+	{
+		int id = omp_get_thread_num();
 
-		//COMM
-		// cout << flush;
-		// cout << i << ".";
+		#pragma omp for
+		for (int i = 0; i < size; i++) { //!!! paralelizar
+			do {
+				//create temp conformation
+				temp = Conformation(&(protein), &(collisionSet));
+				temp.calcFitness();
+
+				//check if fitness is not 0 (and conformation is not already present in population)
+				/*&& this->setOfConformations.insert(temp.getConformationString()).second*/
+			} while (temp.getFitness() == 0);
+
+			//add to individuals
+			individuals[i] = temp;
+			local_sets[id].insert(temp.getConformationString());
+
+			//COMM
+			// cout << flush;
+			// cout << i << ".";
+		}
+
+		//!!! do a reduction of all socs
+		int upper_bound = omp_get_num_threads();
+		int lower_bound = (upper_bound + 1) >> 1;
+		while (upper_bound != 1) {
+			if (lower_bound <= id && id < upper_bound) {
+				std::set_union(local_sets[id].begin(), local_sets[id].end(),
+							   local_sets[id - lower_bound].begin(), local_sets[id - lower_bound].end(),
+							   std::inserter(local_sets[id - lower_bound], local_sets[id - lower_bound].begin()));
+				// std::cout << std::string("uniting set " + std::to_string(id) + " to "+ std::to_string(id - lower_bound) + '\n');
+			}
+			upper_bound = lower_bound;
+			++lower_bound >>= 1;
+			#pragma omp barrier
+		}
+
+		//!!! move the 0th set to the global set
+		if (id == 0) {
+			setOfConformations = std::move(local_sets[0]);
+		}
 	}
-
+	delete[] local_sets;
+	finish = omp_get_wtime();
+	std::cout << "elapsed: " << finish - start << " s.\n";
+	
 	this->theFittest = &(this->individuals[0]);
 	this->setFittest();
-	cout << endl;
+	std::cout << std::endl;
 }
 
 Population::~Population() {
@@ -80,7 +117,7 @@ bool Population::isInsertable(const Conformation &candidate) {
  * determines and sets the fittest individual
  */
 void Population::setFittest() {
-	for (int i = 0; i < this->size; i++) {
+	for (int i = 0; i < this->size; i++) { //!!! paralelizar
 		if (this->individuals[i].getFitness() < this->theFittest->getFitness()) {
 			this->theFittest = &(this->individuals[i]);
 		}
@@ -99,7 +136,7 @@ Conformation * Population::getFittest() const {
  */
 void Population::dumpAll() const {
 	for (int i = 0; i < this->size; i++) {
-		cout << i << ": " + this->individuals[i].getStatusString() << endl;
+		std::cout << i << ": " + this->individuals[i].getStatusString() << endl;
 	}
 }
 

@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Protein
-P=WWBWWBBWWBBWWWWWBBBBBBBBBBWWWWWWBBWWBBWWBWWBBBBB
+P=BBBBWWWWBBBBBBBBBBBBWWWWWWBBBBBBBBBBBBWWWBBBBBBBBBBBBWWWBBBBBBBBBBBBWWWBWWBBWWBBWWBWB
 
 # Mutation
 m=0.025 
@@ -10,10 +10,10 @@ m=0.025
 c=0.90  
 
 # Energy evaluations
-e=1000  
+e=10000
 
 # Minimun energy
-y=-23   
+y=-52   
 
 # Population size
 s=128
@@ -25,4 +25,4 @@ make all
 ./hpfolder -e $e -y $y -p $P -s $s -m $m -c $c 
 
 # Destroy it
-make clean
+# make clean
