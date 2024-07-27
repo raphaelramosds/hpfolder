@@ -136,29 +136,29 @@ void Population::crossover() {
 	float randF = 0.0;
 
 	//find parents
-	this->parent1 = this->rouletteWheelSelect();
+	this->parent1 = this->rouletteWheelSelect(); // 1 loop
 	randF = Conformation::randomFloat();
 	if( this->crossProb < randF ) {
 		return; //crossover rate
 	}
 
-	this->parent2 = this->rouletteWheelSelect();
+	this->parent2 = this->rouletteWheelSelect(); // 1 loop
 	randF = Conformation::randomFloat();
 	if( this->crossProb < randF ) {
 		return; //crossover rate
 	}
 
 	//recombinate parents to children
-	this->child1 = Conformation(*(this->parent1), *(this->parent2), &(this->collisionSet));
-	this->child2 = Conformation(*(this->parent2), *(this->parent1), &(this->collisionSet));
+	this->child1 = Conformation(*(this->parent1), *(this->parent2), &(this->collisionSet)); // 2 loops (modificar para construtor de movimento)
+	this->child2 = Conformation(*(this->parent2), *(this->parent1), &(this->collisionSet)); // 2 loops (modificar para construtor de movimento)
 
 	//mutate child1
-	this->child1.mutate(this->mutProb);
+	this->child1.mutate(this->mutProb); // 1 loop
 	this->child1.calcValidity();
 
 	if (this->child1.isValid()) { //if child is valid
 		//update fitness of child1
-		this->child1.calcFitness();
+		this->child1.calcFitness(); // 1 loop
 
 		//if conformation of child1 isnt present yet
 		if (this->isInsertable(this->child1)) {
