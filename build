@@ -16,7 +16,7 @@ e=10000
 y=-52   
 
 # Population size
-s=128
+s=256
 
 # Make program
 make all

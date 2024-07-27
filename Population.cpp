@@ -29,9 +29,9 @@ Population::Population(int size, Protein prot, float mutProb, float crossProb) {
 	//COMM
 	std::cout << "Generate Population: " << endl;
 
-	double start, finish;
+	// double start, finish;
 
-	start = omp_get_wtime();
+	// start = omp_get_wtime();
 	std::set<std::string>* local_sets = new std::set<std::string>[omp_get_max_threads()];
 	#pragma omp parallel default(none)  \
 		    private(temp, collisionSet) \
@@ -64,9 +64,11 @@ Population::Population(int size, Protein prot, float mutProb, float crossProb) {
 		int lower_bound = (upper_bound + 1) >> 1;
 		while (upper_bound != 1) {
 			if (lower_bound <= id && id < upper_bound) {
+				std::set<std::string> aux;
 				std::set_union(local_sets[id].begin(), local_sets[id].end(),
 							   local_sets[id - lower_bound].begin(), local_sets[id - lower_bound].end(),
-							   std::inserter(local_sets[id - lower_bound], local_sets[id - lower_bound].begin()));
+							   std::inserter(aux, aux.begin()));
+				local_sets[id - lower_bound] = std::move(aux);
 				// std::cout << std::string("uniting set " + std::to_string(id) + " to "+ std::to_string(id - lower_bound) + '\n');
 			}
 			upper_bound = lower_bound;
@@ -80,8 +82,8 @@ Population::Population(int size, Protein prot, float mutProb, float crossProb) {
 		}
 	}
 	delete[] local_sets;
-	finish = omp_get_wtime();
-	std::cout << "elapsed: " << finish - start << " s.\n";
+	// finish = omp_get_wtime();
+	// std::cout << "elapsed: " << finish - start << " s.\n" << "size: " << setOfConformations.size() << '\n';
 	
 	this->theFittest = &(this->individuals[0]);
 	this->setFittest();
