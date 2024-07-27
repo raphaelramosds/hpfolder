@@ -1,6 +1,6 @@
 CXX=g++
 
-CXXFLAGS=-O3 -pg
+CXXFLAGS=-O3 -pg # -fopenmp
 
 LIBS=-lGL -lGLU -lglut -lboost_system -lboost_thread
 
@@ -13,13 +13,13 @@ all: $(TARGET)
 Protein.o: Protein.hpp Protein.cpp
 	$(CXX) $(CXXFLAGS) -c Protein.cpp
 
-Conformation.o: Protein.o Conformation.hpp Conformation.cpp
+Conformation.o: Conformation.hpp Protein.hpp Conformation.cpp
 	$(CXX) $(CXXFLAGS) -c Conformation.cpp
 
-Population.o: Protein.o Population.hpp Population.cpp
+Population.o: Protein.hpp Population.hpp Population.cpp
 	$(CXX) $(CXXFLAGS) -c Population.cpp
 
-main.o: Protein.o Conformation.o Population.o main.cpp
+main.o: Protein.hpp Conformation.hpp Population.hpp main.cpp
 	$(CXX) $(CXXFLAGS) -c main.cpp -o main.o
 
 hpfolder: $(OBJS)
