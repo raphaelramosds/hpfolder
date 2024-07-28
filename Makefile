@@ -1,29 +1,31 @@
-CXX=g++
+CXX = g++
 
-CXXFLAGS=-O3 -pg
+CXXFLAGS= -O3 -Wall -Wextra -fopenmp # -pg -g
 
-LIBS=-lGL -lGLU -lglut -lboost_system -lboost_thread
+LIBS = -lGL -lGLU -lglut -lboost_system -lboost_thread
 
-TARGET=hpfolder
+TARGET = hpfolder
 
-OBJS=Protein.o Conformation.o Population.o main.o
+OBJS = $(subst .cpp,.o,$(wildcard *.cpp))
 
 all: $(TARGET)
-
-Protein.o: Protein.hpp Protein.cpp
-	$(CXX) $(CXXFLAGS) -c Protein.cpp
-
-Conformation.o: Protein.o Conformation.hpp Conformation.cpp
-	$(CXX) $(CXXFLAGS) -c Conformation.cpp
-
-Population.o: Protein.o Population.hpp Population.cpp
-	$(CXX) $(CXXFLAGS) -c Population.cpp
-
-main.o: Protein.o Conformation.o Population.o main.cpp
-	$(CXX) $(CXXFLAGS) -c main.cpp -o main.o
 
 hpfolder: $(OBJS)
 	g++ $(CXXFLAGS) -o $(TARGET) $(OBJS) $(LIBS)
 
+# hpfolder deps:
+
+Conformation.o: Conformation.cpp Conformation.hpp Protein.hpp
+	$(CXX) $(CXXFLAGS) -o $@ -c $<
+
+main.o: main.cpp Conformation.hpp Protein.hpp Population.hpp
+	$(CXX) $(CXXFLAGS) -o $@ -c $<
+
+Population.o: Population.cpp Population.hpp Protein.hpp
+	$(CXX) $(CXXFLAGS) -o $@ -c $<
+
+Protein.o: Protein.cpp Protein.hpp
+	$(CXX) $(CXXFLAGS) -o $@ -c $<
+
 clean:
-	rm *.o $(TARGET) *.out
+	rm -f *.o $(TARGET) *.out

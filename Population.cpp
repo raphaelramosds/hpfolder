@@ -8,7 +8,8 @@
 #include <cstdlib>
 #include <iostream>
 #include <set>
-using namespace std;
+#include <algorithm>
+#include <omp.h>
 
 #include "Population.hpp"
 #include "Protein.hpp"
@@ -26,32 +27,42 @@ Population::Population(int size, Protein prot, float mutProb, float crossProb) {
 	Conformation temp;
 
 	//COMM
-	cout << "Generate Population: " << endl;
+	std::cout << "Generate Population: " << '\n';
 
-	int i = 0;
-	while (i < this->size) {
-		//create temp conformation
-		temp = Conformation(&(this->protein), &(this->collisionSet));
-		temp.calcFitness();
+	// double start, finish;
+	// start = omp_get_wtime();
+	#pragma omp declare reduction(U:std::set<std::string>:\
+		omp_out.insert(omp_in.begin(), omp_in.end())\
+	)
 
-		//check if fitness is not 0 (and conformation is not already present in population)
-		/*&& this->setOfConformations.insert(temp.getConformationString()).second*/
-		if (temp.getFitness() != 0 ) {
+	#pragma omp parallel for default(none)  \
+			reduction(U:setOfConformations) \
+		    private(temp, collisionSet)     \
+		    shared (size, protein, individuals, std::cout)
+	for (int i = 0; i < size; i++) {
+		do {
+			//create temp conformation
+			temp = Conformation(&(protein), &(collisionSet));
+			temp.calcFitness();
 
-			//add to individuals
-			this->individuals[i] = temp;
-			this->setOfConformations.insert(temp.getConformationString());
+			//check if fitness is not 0 (and conformation is not already present in population)
+			/*&& this->setOfConformations.insert(temp.getConformationString()).second*/
+		} while (temp.getFitness() == 0);
 
-			//COMM
-			cout << flush;
-			cout << i << ".";
-			i++;
-		}
+		//add to individuals
+		individuals[i] = temp;
+		setOfConformations.insert(temp.getConformationString());
+
+		//COMM
+		// cout << flush;
+		// cout << i << ".";
 	}
-
+	// finish = omp_get_wtime();
+	// std::cout << "Elapsed: " << finish - start << '\n';
+	
 	this->theFittest = &(this->individuals[0]);
 	this->setFittest();
-	cout << endl;
+	std::cout << '\n';
 }
 
 Population::~Population() {
@@ -83,11 +94,22 @@ bool Population::isInsertable(const Conformation &candidate) {
  * determines and sets the fittest individual
  */
 void Population::setFittest() {
-	for (int i = 0; i < this->size; i++) {
-		if (this->individuals[i].getFitness() < this->theFittest->getFitness()) {
-			this->theFittest = &(this->individuals[i]);
+	// double start, finish;
+	// start = omp_get_wtime();
+	#pragma omp declare reduction(min:Conformation*:\
+		omp_out = omp_in->getFitness() < omp_out->getFitness() ? omp_in : omp_out\
+	) initializer(omp_priv = omp_orig)
+
+	#pragma omp parallel for default(none)\
+			reduction(min:theFittest)\
+			shared(size, individuals)
+	for (int i = 0; i < size; i++) {
+		if (individuals[i].getFitness() < theFittest->getFitness()) {
+			theFittest = &(individuals[i]);
 		}
 	}
+	// finish = omp_get_wtime();
+	// std::cout << "Elapsed: " << finish - start << '\n';
 }
 
 /*
@@ -102,7 +124,7 @@ Conformation * Population::getFittest() const {
  */
 void Population::dumpAll() const {
 	for (int i = 0; i < this->size; i++) {
-		cout << i << ": " + this->individuals[i].getStatusString() << endl;
+		std::cout << i << ": " + this->individuals[i].getStatusString() << '\n';
 	}
 }
 
@@ -117,8 +139,9 @@ Conformation * Population::rouletteWheelSelect() {
 	int i = 0;
 
 	//calculate total fitness
-	for (int i = 0; i < this->size; i++) {
-		totalFitness += this->individuals[i].getFitness();
+	# pragma omp parallel for reduction(+:totalFitness) default(none) shared(size, individuals)
+	for (i = 0; i < size; i++) {
+		totalFitness += individuals[i].getFitness();
 	}
 
 	randF = Conformation::randomFloat();
@@ -139,29 +162,29 @@ void Population::crossover() {
 	float randF = 0.0;
 
 	//find parents
-	this->parent1 = this->rouletteWheelSelect();
+	this->parent1 = this->rouletteWheelSelect(); // 1 loop
 	randF = Conformation::randomFloat();
 	if( this->crossProb < randF ) {
 		return; //crossover rate
 	}
 
-	this->parent2 = this->rouletteWheelSelect();
+	this->parent2 = this->rouletteWheelSelect(); // 1 loop
 	randF = Conformation::randomFloat();
 	if( this->crossProb < randF ) {
 		return; //crossover rate
 	}
 
 	//recombinate parents to children
-	this->child1 = Conformation(*(this->parent1), *(this->parent2), &(this->collisionSet));
-	this->child2 = Conformation(*(this->parent2), *(this->parent1), &(this->collisionSet));
+	this->child1 = Conformation(*(this->parent1), *(this->parent2), &(this->collisionSet)); // 2 loops (modificar para construtor de movimento)
+	this->child2 = Conformation(*(this->parent2), *(this->parent1), &(this->collisionSet)); // 2 loops (modificar para construtor de movimento)
 
 	//mutate child1
-	this->child1.mutate(this->mutProb);
+	this->child1.mutate(this->mutProb); // 1 loop
 	this->child1.calcValidity();
 
 	if (this->child1.isValid()) { //if child is valid
 		//update fitness of child1
-		this->child1.calcFitness();
+		this->child1.calcFitness(); // 1 loop
 
 		//if conformation of child1 isnt present yet
 		if (this->isInsertable(this->child1)) {

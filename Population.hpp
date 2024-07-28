@@ -44,6 +44,7 @@ class Population {
 		int size;
 		float mutProb;
 		float crossProb;
+		static void set_union(std::set<std::string>& inout, std::set<std::string>& in);
 };
 
 #endif /* POPULATION_H_ */
