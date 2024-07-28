@@ -8,7 +8,6 @@
 #include <set>
 #include <cstdlib>
 #include <string>
-#include<omp.h>
 #include <iostream>
 #include <cstdio>
 #include <sstream>
@@ -65,14 +64,14 @@ Conformation::Conformation(const Conformation &p1, const Conformation &p2, set<i
 
 	//set crossed encoding
 	//first part
-	# pragma omp parallel for default(none) private(i) shared(randI, p1, encoding)
+	# pragma omp parallel for default(none) shared(randI, p1, encoding)
 	for(int i = 0; i < randI; i++) {
-		this->encoding[i] = p1.encoding[i];
+		encoding[i] = p1.encoding[i];
 	}
 	//second part
-	# pragma omp parallel for  default(none) private(i) shared(lenght, randI, p2)
-	for(int i = randI; i < this->length-2; i++) {
-		this->encoding[i] = p2.encoding[i];
+	# pragma omp parallel for  default(none) shared(length, randI, p2, encoding)
+	for(int i = randI; i < length - 2; i++) {
+		encoding[i] = p2.encoding[i];
 	}
 	if( this->setOfPoints != NULL ) {
 		this->calcValidity();
@@ -111,14 +110,14 @@ const Conformation & Conformation::operator=(const Conformation &right) {
 		this->absPositions = new int[this->length];
 
 		//copy absolute positions
-		# pragma omp parallel for default(none)  private(i) shared(lenght, right, absPositions)
-		for( int i = 0; i < this->length; i++) {
-			this->absPositions[i] = right.absPositions[i];
+		# pragma omp parallel for default(none) shared(length, right, absPositions)
+		for( int i = 0; i < length; i++) {
+			absPositions[i] = right.absPositions[i];
 		}
 		//copy encoding
-		# pragma omp parallel for default(none) private(i) shared(lenght, right, encoding)
-		for( int i = 0; i < this->length - 2; i++) {
-			this->encoding[i] = right.encoding[i];
+		# pragma omp parallel for default(none) shared(length, right, encoding)
+		for( int i = 0; i < length - 2; i++) {
+			encoding[i] = right.encoding[i];
  		}
 		if( this->setOfPoints != NULL ) {
 			this->setOfPoints->clear();
@@ -130,13 +129,12 @@ const Conformation & Conformation::operator=(const Conformation &right) {
 //overload == operator for comparison
 bool Conformation::operator==(const Conformation &right) const {
 	//compare length
-	if( this->length != right.length ) {
+	if(length != right.length) {
 		return false;
 	}
 	//compare encoding
-	# pragma omp parallel for default(none) private(i) shared(lenght, encoding, right)
-	for( int i = 0; i < this->length - 2; i++ ) {
-		if( this->encoding[i] != right.encoding[i] ) {
+	for( int i = 0; i < length - 2; i++ ) {
+		if(encoding[i] != right.encoding[i]) {
 			return false;
 		}
 	}
@@ -163,7 +161,7 @@ int Conformation::getLength() const {
 
 void Conformation::calcFitness() {
 	Conformation::energyEvalSteps++;
-	int fitness = 0;
+	int temp_fitness = 0;
 	short oriX;
 	short oriY;
 	short destX;
@@ -172,22 +170,26 @@ void Conformation::calcFitness() {
 	int distY;
 
 	// for each amino acid except the last.. do:
-	for (int i = 0; i < this->length; i++) {
+	#pragma omp parallel for default(none)\
+			reduction(+:temp_fitness)\
+			shared(length, protein, absPositions)\
+			private(oriX, oriY, destX, destY, distX, distY)
+	for (int i = 0; i < length; i++) {
 
 		// check if it is hydrophobic ("black")
-		if (this->protein->getNth(i) == 'B') {
+		if (protein->getNth(i) == 'B') {
 			// get coordinates of current origin
-			oriX = Conformation::extractX(this->absPositions[i]);
-			oriY = Conformation::extractY(this->absPositions[i]);
+			oriX = Conformation::extractX(absPositions[i]);
+			oriY = Conformation::extractY(absPositions[i]);
 
 			// for every remaining amino acid
 			// skipping the successor too
-			for (int j = i + 2; j < this->length; j++) {
+			for (int j = i + 2; j < length; j++) {
 				// if amino acid is black=hydrophob
-				if (this->protein->getNth(j) == 'B') {
+				if (protein->getNth(j) == 'B') {
 					// get coordinates of current destination
-					destX = Conformation::extractX(this->absPositions[j]);
-					destY = Conformation::extractY(this->absPositions[j]);
+					destX = Conformation::extractX(absPositions[j]);
+					destY = Conformation::extractY(absPositions[j]);
 
 					// check if destination is neighbor to origin
 					// means distance is 1 in lattice
@@ -195,14 +197,14 @@ void Conformation::calcFitness() {
 					distY = abs(static_cast<int>((oriY - destY)));
 					if (((distX == 1) && (distY == 0))
 							|| ((distX == 0) && (distY == 1))) {
-						fitness--;
+						temp_fitness--;
 					}
 				}
 			}
 		}
 	}
 
-	this->fitness = fitness;
+	this->fitness = temp_fitness;
 }
 
 int Conformation::getFitness() const {
@@ -211,7 +213,6 @@ int Conformation::getFitness() const {
 
 string Conformation::getConformationString() const {
 	string result = "";
-	# pragma omp parallel for reduction(+: result) default(none) private(i) shared(lenght, encoding)
 	for(int i=0; i<this->length-2; i++) {
 		if(this->encoding[i] == FORWARD) {
 			result += "F";
@@ -263,13 +264,16 @@ void Conformation::mutate( float probability ) {
 	char randC;
 
 	// for each amino acid..
-	for (int i = 0; i < this->length - 2; i++) {
-		randF = this->randomFloat();
+	#pragma omp parallel for default(none)\
+			shared(length, probability, encoding)\
+			private(randF, randC)
+	for (int i = 0; i < length - 2; i++) {
+		randF = randomFloat();
 		// ..check mutation probability
 		if (randF <= probability) {
 			// find random direction and mutate
 			randC = static_cast<char>(rand_r(&seed) % 3 - 1); //random numer -1, 0, 1;
-			this->encoding[i] = randC;
+			encoding[i] = randC;
 		}
 	}
 }
@@ -398,7 +402,7 @@ void Conformation::printAsciiPicture() const {
 
 	//allocate mem for field
 	char **pField = new char*[height];
-	# pragma omp parallel for default(none) private(i) shared(height, width, pField)
+	# pragma omp parallel for default(none) shared(height, width, pField)
 	for(int i = 0; i < height; i++) {
 		pField[i] = new char[width];
 	}

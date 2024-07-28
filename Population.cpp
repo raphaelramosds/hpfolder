@@ -27,7 +27,7 @@ Population::Population(int size, Protein prot, float mutProb, float crossProb) {
 	Conformation temp;
 
 	//COMM
-	std::cout << "Generate Population: " << endl;
+	std::cout << "Generate Population: " << '\n';
 
 	// double start, finish;
 	// start = omp_get_wtime();
@@ -62,7 +62,7 @@ Population::Population(int size, Protein prot, float mutProb, float crossProb) {
 	
 	this->theFittest = &(this->individuals[0]);
 	this->setFittest();
-	std::cout << std::endl;
+	std::cout << '\n';
 }
 
 Population::~Population() {
@@ -124,7 +124,7 @@ Conformation * Population::getFittest() const {
  */
 void Population::dumpAll() const {
 	for (int i = 0; i < this->size; i++) {
-		std::cout << i << ": " + this->individuals[i].getStatusString() << endl;
+		std::cout << i << ": " + this->individuals[i].getStatusString() << '\n';
 	}
 }
 
@@ -139,9 +139,9 @@ Conformation * Population::rouletteWheelSelect() {
 	int i = 0;
 
 	//calculate total fitness
-	# pragma omp parallel for reduction(+:totalFitness) default(none) private(i) shared(size, individuals)
-	for (i = 0; i < this->size; i++) {
-		totalFitness += this->individuals[i].getFitness();
+	# pragma omp parallel for reduction(+:totalFitness) default(none) shared(size, individuals)
+	for (i = 0; i < size; i++) {
+		totalFitness += individuals[i].getFitness();
 	}
 
 	randF = Conformation::randomFloat();
