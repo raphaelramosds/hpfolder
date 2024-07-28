@@ -53,6 +53,7 @@ class Conformation {
 		Protein * getProtein(void) const;
 		void printAsciiPicture(void) const;
 		int getAbsAt(int) const;
+		static void srand(unsigned int);
 
 private:
 		int generation;
@@ -63,6 +64,7 @@ private:
 		int *absPositions;
 		bool validState;
 		set<int> *setOfPoints;
+		thread_local static unsigned int seed;
 };
 
 #endif /* CONFORMATION_H_ */

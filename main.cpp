@@ -12,6 +12,7 @@
 #include <ctime>
 #include <cstdlib>
 #include <climits>
+#include <omp.h>
 using namespace std;
 
 #include <tclap/CmdLine.h>
@@ -56,9 +57,8 @@ unsigned int switch_popsize = 100;
 string switch_protein = "";
 int switch_minen = INT_MIN;
 
-
-
 int main(int argc, char* argv[]) {
+    omp_set_num_threads(8);
 
     //process command line arguments
     try {
@@ -92,8 +92,9 @@ int main(int argc, char* argv[]) {
     }
 
     //random seed
-    srand(0);
+    // srand(0);
     // srand(time(NULL));
+    Conformation::srand(time(NULL));
 
     //Protein p("WBWwB");
     //Protein p("WBWWBWWBBWWB");
@@ -108,7 +109,8 @@ int main(int argc, char* argv[]) {
     Population pop( switch_popsize, p, switch_mutation_prob, switch_crossover_prob);
 
     //create and start thread for calculation
-    boost::thread calcThread(&calculation, &pop);
+    // boost::thread calcThread(&calculation, &pop);
+    calculation(&pop);
 
 /*
     if( switch_enable_graphics ) {
@@ -133,7 +135,7 @@ int main(int argc, char* argv[]) {
     }
 */
     //if opengl is closed wait for calculation
-    calcThread.join();
+    // calcThread.join();
 
     return 0;
 }
@@ -253,11 +255,14 @@ void calculation( Population *pop) {
 
             //if graphics is disabled: output ascii status and picture to console
             if( !switch_enable_graphics ) {
-                cout << globalFittestPtr->getStatusString() << endl;
+                cout << globalFittestPtr->getStatusString() << '\n';
                 // globalFittestPtr->printAsciiPicture();
             }
         }
     }
+
+    globalFittestPtr->printAsciiPicture();
+    globalFittestPtr->calcFitness();
 
     isTerminated = true;
 }

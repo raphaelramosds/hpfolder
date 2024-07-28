@@ -1,7 +1,9 @@
-scripts/log/
+log/
 
 *.out
 
 hpfolder
 
 .vscode
+
+pop_loop.csv
