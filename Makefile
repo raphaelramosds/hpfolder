@@ -1,6 +1,6 @@
 CXX = g++
 
-CXXFLAGS= -g -Wall -Wextra -fopenmp # -pg -O3
+CXXFLAGS= -O3 -Wall -Wextra -fopenmp # -pg -g
 
 LIBS = -lGL -lGLU -lglut -lboost_system -lboost_thread
 
