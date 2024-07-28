@@ -139,6 +139,7 @@ Conformation * Population::rouletteWheelSelect() {
 	int i = 0;
 
 	//calculate total fitness
+	# pragma omp parallel for reduction(+:totalFitness) default(none) private(i) shared(size, individuals)
 	for (i = 0; i < this->size; i++) {
 		totalFitness += this->individuals[i].getFitness();
 	}

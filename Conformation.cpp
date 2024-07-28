@@ -8,7 +8,7 @@
 #include <set>
 #include <cstdlib>
 #include <string>
-
+#include<omp.h>
 #include <iostream>
 #include <cstdio>
 #include <sstream>
@@ -65,10 +65,12 @@ Conformation::Conformation(const Conformation &p1, const Conformation &p2, set<i
 
 	//set crossed encoding
 	//first part
+	# pragma omp parallel for default(none) private(i) shared(randI, p1, encoding)
 	for(int i = 0; i < randI; i++) {
 		this->encoding[i] = p1.encoding[i];
 	}
 	//second part
+	# pragma omp parallel for  default(none) private(i) shared(lenght, randI, p2)
 	for(int i = randI; i < this->length-2; i++) {
 		this->encoding[i] = p2.encoding[i];
 	}
@@ -109,10 +111,12 @@ const Conformation & Conformation::operator=(const Conformation &right) {
 		this->absPositions = new int[this->length];
 
 		//copy absolute positions
+		# pragma omp parallel for default(none)  private(i) shared(lenght, right, absPositions)
 		for( int i = 0; i < this->length; i++) {
 			this->absPositions[i] = right.absPositions[i];
 		}
 		//copy encoding
+		# pragma omp parallel for default(none) private(i) shared(lenght, right, encoding)
 		for( int i = 0; i < this->length - 2; i++) {
 			this->encoding[i] = right.encoding[i];
  		}
@@ -130,6 +134,7 @@ bool Conformation::operator==(const Conformation &right) const {
 		return false;
 	}
 	//compare encoding
+	# pragma omp parallel for default(none) private(i) shared(lenght, encoding, right)
 	for( int i = 0; i < this->length - 2; i++ ) {
 		if( this->encoding[i] != right.encoding[i] ) {
 			return false;
@@ -206,6 +211,7 @@ int Conformation::getFitness() const {
 
 string Conformation::getConformationString() const {
 	string result = "";
+	# pragma omp parallel for reduction(+: result) default(none) private(i) shared(lenght, encoding)
 	for(int i=0; i<this->length-2; i++) {
 		if(this->encoding[i] == FORWARD) {
 			result += "F";
@@ -392,11 +398,13 @@ void Conformation::printAsciiPicture() const {
 
 	//allocate mem for field
 	char **pField = new char*[height];
+	# pragma omp parallel for default(none) private(i) shared(height, width, pField)
 	for(int i = 0; i < height; i++) {
 		pField[i] = new char[width];
 	}
 
 	//init with spaces
+	#pragma omp parallel for
 	for(int i = 0; i < height; i++) {
 		for(int j = 0; j < width; j++) {
 			pField[i][j] = ' ';
