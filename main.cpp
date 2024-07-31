@@ -58,7 +58,8 @@ string switch_protein = "";
 int switch_minen = INT_MIN;
 
 int main(int argc, char* argv[]) {
-    omp_set_num_threads(8);
+    // omp_set_num_threads(8);
+    omp_set_max_active_levels(1);
 
     //process command line arguments
     try {
@@ -86,9 +87,7 @@ int main(int argc, char* argv[]) {
     }
 
     //random seed
-    // srand(0);
-    // srand(time(NULL));
-    Conformation::srand(time(NULL));
+    Conformation::srand(time(nullptr));
 
     //Protein p("WBWwB");
     //Protein p("WBWWBWWBBWWB");
@@ -255,8 +254,7 @@ void calculation( Population *pop) {
         }
     }
 
-    globalFittestPtr->printAsciiPicture();
-    globalFittestPtr->calcFitness();
+    // globalFittestPtr->printAsciiPicture();
 
     isTerminated = true;
 }
