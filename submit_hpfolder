@@ -21,9 +21,9 @@ c=0.90
 e=1000  
 
 # Minimun energy
-m=-23   
+y=-23   
 
 # Population size
 s=128
 
-./hpfolder -e $e -y $m -p $P -s $s -m $m -c $c 
+./hpfolder -e $e -y $y -p $P -s $s -m $m -c $c 
