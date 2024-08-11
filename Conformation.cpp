@@ -64,15 +64,12 @@ Conformation::Conformation(const Conformation &p1, const Conformation &p2, set<i
 
 	//set crossed encoding
 	//first part
-	# pragma omp parallel for default(none) shared(randI, p1, encoding)
-	for(int i = 0; i < randI; i++) {
-		encoding[i] = p1.encoding[i];
+    char* enc = encoding, * p1enc = p1.encoding, * p2enc = p2.encoding;
+	# pragma omp parallel for default(none) shared(randI, p1enc, p2enc, enc)
+	for(int i = 0; i < length - 2; i++) {
+		enc[i] = i < randI ? p1enc[i] : p2enc[i];
 	}
-	//second part
-	# pragma omp parallel for  default(none) shared(length, randI, p2, encoding)
-	for(int i = randI; i < length - 2; i++) {
-		encoding[i] = p2.encoding[i];
-	}
+
 	if( this->setOfPoints != NULL ) {
 		this->calcValidity();
 	}
@@ -110,15 +107,20 @@ const Conformation & Conformation::operator=(const Conformation &right) {
 		this->absPositions = new int[this->length];
 
 		//copy absolute positions
-		# pragma omp parallel for default(none) shared(length, right, absPositions)
-		for( int i = 0; i < length; i++) {
-			absPositions[i] = right.absPositions[i];
-		}
-		//copy encoding
-		# pragma omp parallel for default(none) shared(length, right, encoding)
-		for( int i = 0; i < length - 2; i++) {
-			encoding[i] = right.encoding[i];
- 		}
+		#pragma omp parallel default(none) shared(length, right, absPositions, encoding)
+        {
+            #pragma omp for nowait
+            for( int i = 0; i < length; i++) {
+                absPositions[i] = right.absPositions[i];
+            }
+            //copy encoding
+            char* rightenc = right.encoding;
+            char* enc = encoding;
+            #pragma omp for nowait
+            for( int i = 0; i < length - 2; i++) {
+                enc[i] = rightenc[i];
+            }
+        }
 		if( this->setOfPoints != NULL ) {
 			this->setOfPoints->clear();
 		}
@@ -260,21 +262,27 @@ void Conformation::calcValidity() {
 }
 
 void Conformation::mutate( float probability ) {
-	float randF;
-	char randC;
+	float randF[length - 2];
+	char randC[length - 2];
+
+    #pragma omp parallel for default(none)\
+            shared(randF, randC, length)
+    for (int i = 0; i < length - 2; i++) {
+        randF[i] = randomFloat();
+        randC[i] = static_cast<char>(rand_r(&seed) % 3 - 1);
+    }
 
 	// for each amino acid..
+    char mask;
+    char* enc = encoding;
 	#pragma omp parallel for default(none)\
-			shared(length, probability, encoding)\
-			private(randF, randC)
+			shared(probability, enc, length)\
+			private(randF, randC, mask)\
+            schedule(static, 16)
 	for (int i = 0; i < length - 2; i++) {
-		randF = randomFloat();
 		// ..check mutation probability
-		if (randF <= probability) {
-			// find random direction and mutate
-			randC = static_cast<char>(rand_r(&seed) % 3 - 1); //random numer -1, 0, 1;
-			encoding[i] = randC;
-		}
+        mask = (randF[i] <= probability) ? 0xFF : 0x00;
+        enc[i] = (randC[i] & mask) | (enc[i] & ~mask);
 	}
 }
 
