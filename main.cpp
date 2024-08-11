@@ -20,12 +20,13 @@ using namespace std;
 #include <tclap/ValueArg.h>
 #include <tclap/ArgException.h>
 //#include <GL/glut.h>
-#include <boost/thread.hpp>
+//#include <boost/thread.hpp>
 
 #include "Conformation.hpp"
 #include "Protein.hpp"
 #include "Population.hpp"
 
+#include <pascalops.h>
 
 
 //FUNCTION HEADERS
@@ -61,6 +62,7 @@ int main(int argc, char* argv[]) {
     // omp_set_num_threads(8);
     omp_set_max_active_levels(1);
 
+    pascal_start(1);
     //process command line arguments
     try {
         TCLAP::CmdLine cmd("Folding Visualizer - HP 2d Model", ' ', "0.5");
@@ -104,7 +106,7 @@ int main(int argc, char* argv[]) {
     //create and start thread for calculation
     // boost::thread calcThread(&calculation, &pop);
     calculation(&pop);
-
+    pascal_stop(1);
 /*
     if( switch_enable_graphics ) {
         //openGl part
@@ -129,7 +131,7 @@ int main(int argc, char* argv[]) {
 */
     //if opengl is closed wait for calculation
     // calcThread.join();
-
+    
     return 0;
 }
 
@@ -247,14 +249,11 @@ void calculation( Population *pop) {
             globalFittestPtr = pop->getFittest();
 
             //if graphics is disabled: output ascii status and picture to console
-            if( !switch_enable_graphics ) {
-                cout << globalFittestPtr->getStatusString() << '\n';
-                // globalFittestPtr->printAsciiPicture();
-            }
+            // if( !switch_enable_graphics ) {
+            //     cout << globalFittestPtr->getStatusString() << '\n';
+            // }
         }
     }
-
-    // globalFittestPtr->printAsciiPicture();
 
     isTerminated = true;
 }

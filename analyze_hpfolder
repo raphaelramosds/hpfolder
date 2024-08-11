@@ -1,0 +1,38 @@
+#!/bin/bash
+
+#SBATCH --partition=intel-128
+#SBATCH --job-name=PaScal_job
+#SBATCH --output=PaScal_job%j.out
+#SBATCH --error=PaScal_job%j.err
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=32
+#SBATCH --time=0-0:30
+#SBATCH --hint=compute_bound
+#SBATCH --exclusive
+
+# Protein
+P=BBBBWWWWBBBBBBBBBBBBWWWWWWBBBBBBBBBBBBWWWBBBBBBBBBBBBWWWBBBBBBBBBBBBWWWBWWBBWWBBWWBWB
+
+# Mutation
+m=0.025 
+
+# Crossover
+c=0.90  
+
+# Energy evaluations
+e=10000
+
+# Minimun energy
+y=-52   
+
+# Population size
+s=(128 256 512 1024 2048)
+
+inputs=()
+
+for i in "${!s[@]}"; do
+    inputs[i]="-e $e -y $y -p $P -s ${s[$i]} -m $m -c $c"
+done
+
+echo $(pascalanalyzer -t man -r 5 -c 1,2,4,8,16,32 -i "${inputs[0]}","${inputs[1]}","${inputs[2]}","${inputs[3]}","${inputs[4]}" -o hpfolder.json ./hpfolder)
