@@ -1,6 +1,6 @@
 CXX = g++
 
-CXXFLAGS= -O3 -Wall -Wextra -fopenmp # -pg -g
+CXXFLAGS= -Wall -Wextra -fopenmp -O3 # -g -pg
 
 LIBS = -lm -lmpascalops #-lGL -lGLU -lglut -lboost_system -lboost_thread
 
@@ -20,16 +20,16 @@ hpfolder: $(OBJS)
 # hpfolder deps:
 
 Conformation.o: Conformation.cpp Conformation.hpp Protein.hpp
-	$(CXX) $(CXXFLAGS) $(INCLUDE) -o $@ -c $<
+	$(CXX) $(CXXFLAGS) $(INCLUDE) -o $@ -c $< $(LIBS)
 
 main.o: main.cpp Conformation.hpp Protein.hpp Population.hpp
-	$(CXX) $(CXXFLAGS) $(INCLUDE) -o $@ -c $<
+	$(CXX) $(CXXFLAGS) $(INCLUDE) -o $@ -c $< $(LIBS)
 
 Population.o: Population.cpp Population.hpp Protein.hpp
-	$(CXX) $(CXXFLAGS) $(INCLUDE) -o $@ -c $<
+	$(CXX) $(CXXFLAGS) $(INCLUDE) -o $@ -c $< $(LIBS)
 
 Protein.o: Protein.cpp Protein.hpp
-	$(CXX) $(CXXFLAGS) $(INCLUDE) -o $@ -c $<
+	$(CXX) $(CXXFLAGS) $(INCLUDE) -o $@ -c $< $(LIBS)
 
 clean:
 	rm -f *.o $(TARGET) *.out
