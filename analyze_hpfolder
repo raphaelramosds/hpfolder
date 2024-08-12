@@ -7,12 +7,12 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=32
-#SBATCH --time=0-0:30
+#SBATCH --time=0-0:50
 #SBATCH --hint=compute_bound
 #SBATCH --exclusive
 
 # Protein
-P=BBBBWWWWBBBBBBBBBBBBWWWWWWBBBBBBBBBBBBWWWBBBBBBBBBBBBWWWBBBBBBBBBBBBWWWBWWBBWWBBWWBWB
+P=($(<protein.txt))
 
 # Mutation
 m=0.025 
