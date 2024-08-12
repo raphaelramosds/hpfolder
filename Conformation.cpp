@@ -65,7 +65,7 @@ Conformation::Conformation(const Conformation &p1, const Conformation &p2, set<i
 	//set crossed encoding
 	//first part
     char* enc = encoding, * p1enc = p1.encoding, * p2enc = p2.encoding;
-	# pragma omp parallel for default(none) shared(randI, p1enc, p2enc, enc)
+	# pragma omp parallel for simd schedule(simd:static) default(none) shared(randI, p1enc, p2enc, enc)
 	for(int i = 0; i < length - 2; i++) {
 		enc[i] = i < randI ? p1enc[i] : p2enc[i];
 	}
@@ -109,14 +109,14 @@ const Conformation & Conformation::operator=(const Conformation &right) {
 		//copy absolute positions
 		#pragma omp parallel default(none) shared(length, right, absPositions, encoding)
         {
-            #pragma omp for nowait
+            #pragma omp for simd schedule(simd:static) nowait
             for( int i = 0; i < length; i++) {
                 absPositions[i] = right.absPositions[i];
             }
             //copy encoding
             char* rightenc = right.encoding;
             char* enc = encoding;
-            #pragma omp for nowait
+            #pragma omp for simd schedule(simd:static) nowait
             for( int i = 0; i < length - 2; i++) {
                 enc[i] = rightenc[i];
             }
@@ -275,10 +275,10 @@ void Conformation::mutate( float probability ) {
 	// for each amino acid..
     char mask;
     char* enc = encoding;
-	#pragma omp parallel for default(none)\
-			shared(probability, enc, length)\
-			private(randF, randC, mask)\
-            schedule(static, 16)
+	#pragma omp parallel for simd default(none)\
+			shared(probability, enc, length, randF, randC)\
+			private(mask)\
+            schedule(simd:static)
 	for (int i = 0; i < length - 2; i++) {
 		// ..check mutation probability
         mask = (randF[i] <= probability) ? 0xFF : 0x00;
