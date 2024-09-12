@@ -1,13 +1,13 @@
 #!/bin/bash
 
-#SBATCH --partition=intel-128
+#SBATCH --partition=amd-512
 #SBATCH --job-name=PaScal_job
 #SBATCH --output=PaScal_job%j.out
 #SBATCH --error=PaScal_job%j.err
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
-#SBATCH --cpus-per-task=32
-#SBATCH --time=0-0:50
+#SBATCH --cpus-per-task=128
+#SBATCH --time=0-3:0:0
 #SBATCH --hint=compute_bound
 #SBATCH --exclusive
 
@@ -21,13 +21,13 @@ m=0.025
 c=0.90  
 
 # Energy evaluations
-e=10000
+e=100000
 
 # Minimun energy
 y=-52   
 
 # Population size
-s=(128 256 512 1024 2048)
+s=(128 256 512 1024 2048 4096)
 
 inputs=()
 
@@ -35,4 +35,4 @@ for i in "${!s[@]}"; do
     inputs[i]="-e $e -y $y -p $P -s ${s[$i]} -m $m -c $c"
 done
 
-echo $(pascalanalyzer -t man -r 5 -c 1,2,4,8,16,32 -i "${inputs[0]}","${inputs[1]}","${inputs[2]}","${inputs[3]}","${inputs[4]}" -o hpfolder.json ./hpfolder)
+echo $(pascalanalyzer -t man -r 5 -c 1,2,4,8,16,32,64,128 -i "${inputs[0]}","${inputs[1]}","${inputs[2]}","${inputs[3]}","${inputs[4]}" -o hpfolder.json ./hpfolder)
